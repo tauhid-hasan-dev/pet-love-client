@@ -18,18 +18,12 @@ import { useRouter } from "next/navigation";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/auth.services";
 import { modifyPayload } from "@/utils/modiffyPayload";
-import { registerPatient } from "@/services/actions/registerPatient";
+import { registerUser } from "@/services/actions/registerUser";
 
-interface IPatientData {
+export interface IUserRegisterFormData {
   name: string;
   email: string;
-  contactNumber: string;
-  address: string;
-}
-
-interface IPatientRegisterFormData {
   password: string;
-  patient: IPatientData;
 }
 
 const RegisterPage = () => {
@@ -39,19 +33,19 @@ const RegisterPage = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<IPatientRegisterFormData>();
+  } = useForm<IUserRegisterFormData>();
 
-  const onSubmit: SubmitHandler<IPatientRegisterFormData> = async (values) => {
-    const data = modifyPayload(values);
+  const onSubmit: SubmitHandler<IUserRegisterFormData> = async (values) => {
+    /*  const data = modifyPayload(values); */
     // console.log(data);
     try {
-      const res = await registerPatient(data);
-      // console.log(res);
+      const res = await registerUser(values);
+      console.log({ res });
       if (res?.data?.id) {
         toast.success(res?.message);
         const result = await userLogin({
           password: values.password,
-          email: values.patient.email,
+          email: values.email,
         });
         if (result?.data?.accessToken) {
           storeUserInfo({ accessToken: result?.data?.accessToken });
@@ -89,11 +83,16 @@ const RegisterPage = () => {
             }}
           >
             <Box>
-              <Image src={assets.svgs.logo} width={50} height={50} alt="logo" />
+              <Image
+                src={assets.images.logo}
+                width={50}
+                height={50}
+                alt="logo"
+              />
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Patient Register
+                Register
               </Typography>
             </Box>
           </Stack>
@@ -107,7 +106,7 @@ const RegisterPage = () => {
                     variant="outlined"
                     size="small"
                     fullWidth={true}
-                    {...register("patient.name")}
+                    {...register("name")}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -117,7 +116,7 @@ const RegisterPage = () => {
                     variant="outlined"
                     size="small"
                     fullWidth={true}
-                    {...register("patient.email")}
+                    {...register("email")}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -128,26 +127,6 @@ const RegisterPage = () => {
                     size="small"
                     fullWidth={true}
                     {...register("password")}
-                  />
-                </Grid>
-                <Grid item md={6}>
-                  <TextField
-                    label="Contact Number"
-                    type="tel"
-                    variant="outlined"
-                    size="small"
-                    fullWidth={true}
-                    {...register("patient.contactNumber")}
-                  />
-                </Grid>
-                <Grid item md={6}>
-                  <TextField
-                    label="Address"
-                    type="text"
-                    variant="outlined"
-                    size="small"
-                    fullWidth={true}
-                    {...register("patient.address")}
                   />
                 </Grid>
               </Grid>

@@ -36,9 +36,9 @@ const LoginPage = () => {
     try {
       const res = await userLogin(values);
       console.log(res);
-      if (res?.data?.token) {
+      if (res?.data?.accessToken) {
         toast.success(res?.message);
-        storeUserInfo({ accessToken: res?.data?.token });
+        storeUserInfo({ accessToken: res?.data?.accessToken });
         router.push("/");
       }
     } catch (err: any) {
@@ -72,11 +72,16 @@ const LoginPage = () => {
             }}
           >
             <Box>
-              <Image src={assets.svgs.logo} width={50} height={50} alt="logo" />
+              <Image
+                src={assets.images.logo}
+                width={50}
+                height={50}
+                alt="logo"
+              />
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Login PH HealthCare
+                Login PET LOVE
               </Typography>
             </Box>
           </Stack>
