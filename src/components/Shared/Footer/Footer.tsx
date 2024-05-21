@@ -11,19 +11,15 @@ const Footer = () => {
     <Box bgcolor="rgb(17, 26, 34)" py={5}>
       <Container color="#fff">
         <Stack direction="row" gap={4} justifyContent="center">
-          <Typography color="#fff" component={Link} href="/consultation">
-            Consultation
-          </Typography>
-          <Typography color="#fff">Health Plans</Typography>
-          <Typography color="#fff">Medicine</Typography>
-          <Typography color="#fff">Diagnostics</Typography>
-          <Typography color="#fff">NGOs</Typography>
+          <Typography color="#fff">info@petlove.com</Typography>
+          <Typography color="#fff">(0202) 456 0982</Typography>
+          <Typography color="#fff">Istanbul, Turkey</Typography>
         </Stack>
         <Stack direction="row" gap={2} justifyContent="center" py={3}>
           <Image src={facebookIcon} width={30} height={30} alt="facebook" />
-          <Image src={instagramIcon} width={30} height={30} alt="facebook" />
-          <Image src={twitterIcon} width={30} height={30} alt="facebook" />
-          <Image src={linkedIcon} width={30} height={30} alt="facebook" />
+          <Image src={instagramIcon} width={30} height={30} alt="instagram" />
+          <Image src={twitterIcon} width={30} height={30} alt="twitter" />
+          <Image src={linkedIcon} width={30} height={30} alt="linkedin" />
         </Stack>
         <Box
           sx={{
@@ -38,7 +34,7 @@ const Footer = () => {
           py={3}
         >
           <Typography component="p" color="white">
-            &copy;2024 Ph HealthCare. All Rights Reserved.
+            &copy;2024 PET LOVE. All Rights Reserved.
           </Typography>
           <Typography
             variant="h4"
@@ -48,9 +44,8 @@ const Footer = () => {
             color="white"
           >
             <Box component="span" color="primary.main">
-              T
+              PET LOVE
             </Box>
-            asan Health Care
           </Typography>
           <Typography component="p" color="white">
             Privacy Policy! Terms & Conditions
