@@ -32,12 +32,13 @@ const LoginPage = () => {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
-    // console.log(values);
+    console.log({ values });
     try {
       const res = await userLogin(values);
-      if (res?.data?.accessToken) {
+      console.log(res);
+      if (res?.data?.token) {
         toast.success(res?.message);
-        storeUserInfo({ accessToken: res?.data?.accessToken });
+        storeUserInfo({ accessToken: res?.data?.token });
         router.push("/");
       }
     } catch (err: any) {
