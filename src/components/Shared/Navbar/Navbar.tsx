@@ -7,8 +7,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   const userInfo = getUserInfo();
-  // using dynamic for lazy loading(Hydration error solved)
-  // check next js documentation (lazy loading)
+
   const AuthButton = dynamic(
     () => import("@/components/UI/AuthButton/AuthButton"),
     { ssr: false }
