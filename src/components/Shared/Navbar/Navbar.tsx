@@ -1,10 +1,12 @@
 "use client";
 
+import { getUserInfo } from "@/services/auth.services";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
 const Navbar = () => {
+  const userInfo = getUserInfo();
   // using dynamic for lazy loading(Hydration error solved)
   // check next js documentation (lazy loading)
   const AuthButton = dynamic(
@@ -32,9 +34,11 @@ const Navbar = () => {
           <Typography component={Link} href="/about-us">
             About Us
           </Typography>
-          <Typography component={Link} href="/profile">
-            Profile
-          </Typography>
+          {userInfo?.id && (
+            <Typography component={Link} href="/profile">
+              Profile
+            </Typography>
+          )}
         </Stack>
 
         <AuthButton />
