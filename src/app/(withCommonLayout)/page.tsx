@@ -8,9 +8,7 @@ const HomePage = () => {
   return (
     <div>
       <HeroSection />
-      <Specialist />
       <TopRatedDoctors />
-      <WhyUs />
     </div>
   );
 };

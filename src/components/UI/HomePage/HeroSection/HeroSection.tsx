@@ -22,28 +22,24 @@ const HeroSection = () => {
         >
           <Image src={assets.svgs.grid} alt="doctor1" />
         </Box>
-        <Typography variant="h2" component="h1" fontWeight={600}>
-          Healthier Hearts
+        <Typography variant="h3" component="h3" fontWeight={600}>
+          Find your best friend
         </Typography>
-        <Typography variant="h2" component="h1" fontWeight={600}>
-          Come From
-        </Typography>
+
         <Typography
           variant="h2"
           component="h1"
           fontWeight={600}
           color="primary.main"
         >
-          Preventive Care
+          Adopt and Care
         </Typography>
         <Typography sx={{ my: 4 }}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit eum
-          iusto consequatur eius, doloribus nesciunt facere aliquid eveniet et.
-          Rerum maiores saepe cupiditate repellat recusandae atque sed. Saepe,
-          vitae id?
+          Could you give a dog a forever home? Browse our pooches looking for a
+          new start.
         </Typography>
         <Box sx={{ display: "flex", gap: 2 }}>
-          <Button>Make appointment</Button>
+          <Button>Find</Button>
           <Button variant="outlined">Contact us</Button>
         </Box>
       </Box>
@@ -58,15 +54,6 @@ const HeroSection = () => {
           mt: 0,
         }}
       >
-        <Box
-          sx={{
-            position: "absolute",
-            left: "200px",
-            top: "-30px",
-          }}
-        >
-          <Image src={assets.svgs.arrow} width={100} height={100} alt="arrow" />
-        </Box>
         <Box
           sx={{
             display: "flex",
