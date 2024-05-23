@@ -38,29 +38,22 @@ const Footer = () => {
             &copy;2024 PET LOVE. All Rights Reserved.
           </Typography>
           <Link href="/" passHref>
-            <Typography
-              variant="h4"
-              component="a"
-              fontWeight={600}
-              color="white"
-            >
-              <Stack direction="row" gap={1} alignItems="center">
-                <Box component="span" color="primary.main">
-                  Pet
-                </Box>
-                <Box>
-                  <Image
-                    src={assets.svgs.logo}
-                    width={40}
-                    height={40}
-                    alt="logo"
-                  />
-                </Box>
-                <Box component="span" color="primary.main">
-                  Love
-                </Box>
-              </Stack>
-            </Typography>
+            <Stack direction="row" gap={1} alignItems="center">
+              <Box component="span" color="primary.main">
+                Pet
+              </Box>
+              <Box>
+                <Image
+                  src={assets.svgs.logo}
+                  width={40}
+                  height={40}
+                  alt="logo"
+                />
+              </Box>
+              <Box component="span" color="primary.main">
+                Love
+              </Box>
+            </Stack>
           </Link>
           <Typography component="p" color="white">
             Privacy Policy! Terms & Conditions
