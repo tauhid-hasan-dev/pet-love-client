@@ -17,16 +17,17 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/auth.services";
-import { modifyPayload } from "@/utils/modiffyPayload";
 import { registerUser } from "@/services/actions/registerUser";
 import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export interface IUserRegisterFormData {
-  name: string;
-  email: string;
-  password: string;
-}
+export const validationSchema = z.object({
+  name: z.string().min(1, "Please enter your name!"),
+  email: z.string().email("Please enter a valid email address!"),
+  password: z.string().min(6, "Must be at least 6 characters"),
+});
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -92,7 +93,15 @@ const RegisterPage = () => {
           </Stack>
 
           <Box>
-            <TSNForm onSubmit={handleRegister}>
+            <TSNForm
+              onSubmit={handleRegister}
+              resolver={zodResolver(validationSchema)}
+              defaultValues={{
+                name: "",
+                email: "",
+                password: "",
+              }}
+            >
               <Grid container spacing={2} my={1}>
                 <Grid item md={12}>
                   <TSNInput
