@@ -5,6 +5,7 @@ import facebookIcon from "@/assets/landing_page/facebook.png";
 import instagramIcon from "@/assets/landing_page/instagram.png";
 import twitterIcon from "@/assets/landing_page/twitter.png";
 import linkedIcon from "@/assets/landing_page/linkedin.png";
+import assets from "@/assets";
 
 const Footer = () => {
   return (
@@ -36,17 +37,31 @@ const Footer = () => {
           <Typography component="p" color="white">
             &copy;2024 PET LOVE. All Rights Reserved.
           </Typography>
-          <Typography
-            variant="h4"
-            component={Link}
-            href="/"
-            fontWeight={600}
-            color="white"
-          >
-            <Box component="span" color="primary.main">
-              PET LOVE
-            </Box>
-          </Typography>
+          <Link href="/" passHref>
+            <Typography
+              variant="h4"
+              component="a"
+              fontWeight={600}
+              color="white"
+            >
+              <Stack direction="row" gap={1} alignItems="center">
+                <Box component="span" color="primary.main">
+                  Pet
+                </Box>
+                <Box>
+                  <Image
+                    src={assets.svgs.logo}
+                    width={40}
+                    height={40}
+                    alt="logo"
+                  />
+                </Box>
+                <Box component="span" color="primary.main">
+                  Love
+                </Box>
+              </Stack>
+            </Typography>
+          </Link>
           <Typography component="p" color="white">
             Privacy Policy! Terms & Conditions
           </Typography>
