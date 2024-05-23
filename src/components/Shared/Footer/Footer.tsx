@@ -55,19 +55,13 @@ const Footer = () => {
           </Typography>
           <Link href="/" passHref>
             <Stack direction="row" gap={1} alignItems="center">
-              <Box component="span" color="primary.main">
-                Pet
-              </Box>
               <Box>
                 <Image
                   src={assets.svgs.logo}
-                  width={40}
-                  height={40}
+                  width={50}
+                  height={50}
                   alt="logo"
                 />
-              </Box>
-              <Box component="span" color="primary.main">
-                Love
               </Box>
             </Stack>
           </Link>

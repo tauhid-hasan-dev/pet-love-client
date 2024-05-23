@@ -7,17 +7,6 @@ import { UserRole } from "@/types";
 import SidebarItem from "./SideBarItem";
 
 const SideBar = () => {
-  const drawer = (
-    <div>
-      <Divider />
-      <List>
-        {drawerItems("admin" as UserRole).map((item, index) => (
-          <SidebarItem key={index} item={item} />
-        ))}
-      </List>
-    </div>
-  );
-
   return (
     <Box>
       <Stack
@@ -56,7 +45,11 @@ const SideBar = () => {
         </Typography>
       </Stack>
 
-      {drawer}
+      <List>
+        {drawerItems("admin" as UserRole).map((item, index) => (
+          <SidebarItem key={index} item={item} />
+        ))}
+      </List>
     </Box>
   );
 };
