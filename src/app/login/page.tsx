@@ -15,23 +15,19 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
 import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export type FormValues = {
-  email: string;
-  password: string;
-};
+export const validationSchema = z.object({
+  email: z.string().email("Please enter a valid email address!"),
+  password: z.string().min(6, "Must be at least 6 characters"),
+});
 
 const LoginPage = () => {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<FormValues>();
 
   const handleLogin = async (values: FieldValues) => {
     console.log({ values });
@@ -88,7 +84,14 @@ const LoginPage = () => {
             </Box>
           </Stack>
           <Box>
-            <TSNForm onSubmit={handleLogin}>
+            <TSNForm
+              onSubmit={handleLogin}
+              resolver={zodResolver(validationSchema)}
+              defaultValues={{
+                email: "",
+                password: "",
+              }}
+            >
               <Grid container spacing={2} my={1}>
                 <Grid item md={6}>
                   <TSNInput

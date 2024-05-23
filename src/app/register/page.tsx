@@ -30,16 +30,8 @@ export interface IUserRegisterFormData {
 
 const RegisterPage = () => {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<IUserRegisterFormData>();
 
   const handleRegister = async (values: FieldValues) => {
-    /*  const data = modifyPayload(values); */
-    // console.log(data);
     try {
       const res = await registerUser(values);
       console.log({ res });
