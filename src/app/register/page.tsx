@@ -133,7 +133,10 @@ const RegisterPage = () => {
                 Register
               </Button>
               <Typography component="p" fontWeight={300}>
-                Do you already have an account? <Link href="/login">Login</Link>
+                Do you already have an account?{" "}
+                <Link href="/login">
+                  <span style={{ color: "#4169E1" }}>Login</span>
+                </Link>
               </Typography>
             </TSNForm>
           </Box>

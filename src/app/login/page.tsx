@@ -121,7 +121,9 @@ const LoginPage = () => {
               </Button>
               <Typography component="p" fontWeight={300}>
                 Don&apos;t have an account?{" "}
-                <Link href="/register">Create an account</Link>
+                <Link href="/register">
+                  <span style={{ color: "#4169E1" }}>Create an account</span>
+                </Link>
               </Typography>
             </TSNForm>
           </Box>
