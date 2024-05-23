@@ -9,7 +9,6 @@ const HeroSection = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        my: 10,
       }}
     >
       <Box sx={{ flex: 1 }}>
@@ -26,7 +25,7 @@ const HeroSection = () => {
           Adopt and Care
         </Typography>
         <Typography sx={{ my: 4 }}>
-          Could you give a dog a forever home? Browse our pooches looking for a
+          Could you give a pet a forever home? Browse our pooches looking for a
           new start.
         </Typography>
         <Box sx={{ display: "flex", gap: 2 }}>
@@ -44,7 +43,7 @@ const HeroSection = () => {
         }}
       >
         <Box>
-          <Image src={assets.images.cat} width={400} height={400} alt="cat" />
+          <Image src={assets.images.cat} width={450} height={400} alt="cat" />
         </Box>
       </Box>
     </Container>

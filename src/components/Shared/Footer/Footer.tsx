@@ -32,7 +32,7 @@ const Footer = () => {
             alt="twitter"
           />
           <Image
-            src={assets.images.linkedin}
+            src={assets.images.facebook}
             width={30}
             height={30}
             alt="linkedin"
@@ -55,12 +55,7 @@ const Footer = () => {
           </Typography>
           <Link href="/" passHref>
             <Stack direction="row" gap={1} alignItems="center">
-              <Box
-                component="span"
-                color="primary.main"
-                fontWeight={600}
-                fontSize={30}
-              >
+              <Box component="span" color="primary.main">
                 Pet
               </Box>
               <Box>
@@ -71,12 +66,7 @@ const Footer = () => {
                   alt="logo"
                 />
               </Box>
-              <Box
-                component="span"
-                color="primary.main"
-                fontWeight={600}
-                fontSize={30}
-              >
+              <Box component="span" color="primary.main">
                 Love
               </Box>
             </Stack>
