@@ -1,8 +1,10 @@
 "use client";
 
+import assets from "@/assets";
 import { getUserInfo } from "@/services/auth.services";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -21,9 +23,17 @@ const Navbar = () => {
         alignItems="center"
       >
         <Typography variant="h4" component={Link} href="/" fontWeight={600}>
-          <Box component="span" color="primary.main">
-            PET LOVE
-          </Box>
+          <Stack direction="row" gap={1}>
+            <Box component="span" color="primary.main">
+              Pet
+            </Box>
+            <Box>
+              <Image src={assets.svgs.logo} width={40} height={40} alt="logo" />
+            </Box>
+            <Box component="span" color="primary.main">
+              Love
+            </Box>
+          </Stack>
         </Typography>
 
         <Stack direction="row" justifyContent="space-between" gap={4}>

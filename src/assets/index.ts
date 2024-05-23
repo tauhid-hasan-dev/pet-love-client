@@ -15,7 +15,7 @@ const assets = {
     familyOnBeach: require("./images/familyOnBeach.png"),
   },
   svgs: {
-    logo: require("./svgs/logo.svg"),
+    logo: require("./svgs/petlogo.svg"),
     search: require("./svgs/search.svg"),
     calender: require("./svgs/calender.svg"),
     location: require("./svgs/location.svg"),
