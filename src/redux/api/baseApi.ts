@@ -1,10 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { tagTypesList } from "../tag-types";
+import { axiosBaseQuery } from "@/helpers/axios/axiosBaseQuery";
 
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({
+  baseQuery: axiosBaseQuery({
     baseUrl: "https://pet-adoption-plaform-a8.vercel.app/api",
   }),
   endpoints: () => ({}),
