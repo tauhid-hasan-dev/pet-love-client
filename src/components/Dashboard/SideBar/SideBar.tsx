@@ -5,8 +5,11 @@ import assets from "@/assets";
 import { drawerItems } from "@/utils/drawerItems";
 import { UserRole } from "@/types";
 import SidebarItem from "./SideBarItem";
+import { getUserInfo } from "@/services/auth.services";
 
 const SideBar = () => {
+  const { role } = getUserInfo();
+
   return (
     <Box>
       <Stack
@@ -46,7 +49,7 @@ const SideBar = () => {
       </Stack>
 
       <List>
-        {drawerItems("admin" as UserRole).map((item, index) => (
+        {drawerItems(role as UserRole).map((item, index) => (
           <SidebarItem key={index} item={item} />
         ))}
       </List>
