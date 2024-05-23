@@ -11,11 +11,13 @@ import {
 import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import TSNForm from "@/components/Forms/TSNForm";
+import TSNInput from "@/components/Forms/TSNInput";
 
 export type FormValues = {
   email: string;
@@ -31,7 +33,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = async (values) => {
+  const handleLogin = async (values: FieldValues) => {
     console.log({ values });
     try {
       const res = await userLogin(values);
@@ -86,26 +88,22 @@ const LoginPage = () => {
             </Box>
           </Stack>
           <Box>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <TSNForm onSubmit={handleLogin}>
               <Grid container spacing={2} my={1}>
                 <Grid item md={6}>
-                  <TextField
+                  <TSNInput
                     label="Email"
                     type="email"
-                    variant="outlined"
-                    size="small"
                     fullWidth={true}
-                    {...register("email")}
+                    name="email"
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <TextField
+                  <TSNInput
                     label="Password"
                     type="password"
-                    variant="outlined"
-                    size="small"
                     fullWidth={true}
-                    {...register("password")}
+                    name="password"
                   />
                 </Grid>
               </Grid>
@@ -127,7 +125,7 @@ const LoginPage = () => {
                 Don&apos;t have an account?{" "}
                 <Link href="/register">Create an account</Link>
               </Typography>
-            </form>
+            </TSNForm>
           </Box>
         </Box>
       </Stack>

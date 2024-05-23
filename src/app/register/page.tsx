@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -19,6 +19,8 @@ import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/auth.services";
 import { modifyPayload } from "@/utils/modiffyPayload";
 import { registerUser } from "@/services/actions/registerUser";
+import TSNForm from "@/components/Forms/TSNForm";
+import TSNInput from "@/components/Forms/TSNInput";
 
 export interface IUserRegisterFormData {
   name: string;
@@ -35,7 +37,7 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm<IUserRegisterFormData>();
 
-  const onSubmit: SubmitHandler<IUserRegisterFormData> = async (values) => {
+  const handleRegister = async (values: FieldValues) => {
     /*  const data = modifyPayload(values); */
     // console.log(data);
     try {
@@ -98,35 +100,30 @@ const RegisterPage = () => {
           </Stack>
 
           <Box>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <TSNForm onSubmit={handleRegister}>
               <Grid container spacing={2} my={1}>
                 <Grid item md={12}>
-                  <TextField
+                  <TSNInput
                     label="Name"
-                    variant="outlined"
-                    size="small"
+                    type="name"
                     fullWidth={true}
-                    {...register("name")}
+                    name="name"
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <TextField
+                  <TSNInput
                     label="Email"
                     type="email"
-                    variant="outlined"
-                    size="small"
                     fullWidth={true}
-                    {...register("email")}
+                    name="email"
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <TextField
+                  <TSNInput
                     label="Password"
                     type="password"
-                    variant="outlined"
-                    size="small"
                     fullWidth={true}
-                    {...register("password")}
+                    name="password"
                   />
                 </Grid>
               </Grid>
@@ -142,7 +139,7 @@ const RegisterPage = () => {
               <Typography component="p" fontWeight={300}>
                 Do you already have an account? <Link href="/login">Login</Link>
               </Typography>
-            </form>
+            </TSNForm>
           </Box>
         </Box>
       </Stack>
