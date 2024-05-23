@@ -2,18 +2,28 @@
 
 import assets from "@/assets";
 import { getUserInfo } from "@/services/auth.services";
+import { useEffect, useState } from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
-  const userInfo = getUserInfo();
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const info = await getUserInfo();
+      setUserInfo(info);
+    };
+    fetchUserInfo();
+  }, []);
 
   const AuthButton = dynamic(
     () => import("@/components/UI/AuthButton/AuthButton"),
     { ssr: false }
   );
+
   return (
     <Container>
       <Stack
@@ -43,7 +53,7 @@ const Navbar = () => {
           <Typography component={Link} href="/about-us">
             About Us
           </Typography>
-          {userInfo?.id && (
+          {userInfo && (
             <Typography component={Link} href="/profile">
               Profile
             </Typography>
