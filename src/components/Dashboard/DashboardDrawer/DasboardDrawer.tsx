@@ -9,15 +9,10 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-// import SideBar from "../SideBar/SideBar";
-import { Avatar, Badge, Stack } from "@mui/material";
-// import AccountMenu from "../AccountMenu/AccountMenu";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import { Avatar, Button, Stack } from "@mui/material";
 import SideBar from "../SideBar/SideBar";
-/* import SideBar from "../SideBar/SideBar"; */
-// import { useGetSingleUserQuery } from "@/redux/api/userApi";
+import { isLoggedIn, removeUser } from "@/services/auth.services";
+import { useRouter } from "next/navigation";
 
 const drawerWidth = 240;
 
@@ -26,6 +21,7 @@ export default function DashboardDrawer({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
@@ -44,6 +40,11 @@ export default function DashboardDrawer({
     }
   };
 
+  const handleLogOut = () => {
+    removeUser();
+    router.push("/");
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -52,7 +53,7 @@ export default function DashboardDrawer({
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          background: "#F4F7FE",
+          background: "#FFF5EE",
           boxShadow: 0,
           borderBottom: "1px solid #ddd",
           py: 1,
@@ -95,12 +96,12 @@ export default function DashboardDrawer({
               </Typography>
             </Box>
             <Stack direction="row" gap={3}>
-              <Badge badgeContent={1} color="primary">
-                <IconButton sx={{ background: "#ffffff" }}>
-                  <NotificationsNoneIcon color="action" />
-                </IconButton>
-              </Badge>
-              <Avatar alt={"name"} />
+              <Avatar alt="profile" src="https://i.ibb.co/0rNMXrn/user.png" />
+              {isLoggedIn() && (
+                <Button color="error" onClick={handleLogOut}>
+                  Logout
+                </Button>
+              )}
             </Stack>
           </Box>
         </Toolbar>
