@@ -1,10 +1,6 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import facebookIcon from "@/assets/landing_page/facebook.png";
-import instagramIcon from "@/assets/landing_page/instagram.png";
-import twitterIcon from "@/assets/landing_page/twitter.png";
-import linkedIcon from "@/assets/landing_page/linkedin.png";
 import assets from "@/assets";
 
 const Footer = () => {
@@ -17,10 +13,30 @@ const Footer = () => {
           <Typography color="#fff">Istanbul, Turkey</Typography>
         </Stack>
         <Stack direction="row" gap={2} justifyContent="center" py={3}>
-          <Image src={facebookIcon} width={30} height={30} alt="facebook" />
-          <Image src={instagramIcon} width={30} height={30} alt="instagram" />
-          <Image src={twitterIcon} width={30} height={30} alt="twitter" />
-          <Image src={linkedIcon} width={30} height={30} alt="linkedin" />
+          <Image
+            src={assets.images.facebook}
+            width={30}
+            height={30}
+            alt="facebook"
+          />
+          <Image
+            src={assets.images.instagram}
+            width={30}
+            height={30}
+            alt="instagram"
+          />
+          <Image
+            src={assets.images.twitter}
+            width={30}
+            height={30}
+            alt="twitter"
+          />
+          <Image
+            src={assets.images.linkedin}
+            width={30}
+            height={30}
+            alt="linkedin"
+          />
         </Stack>
         <Box
           sx={{
@@ -39,7 +55,12 @@ const Footer = () => {
           </Typography>
           <Link href="/" passHref>
             <Stack direction="row" gap={1} alignItems="center">
-              <Box component="span" color="primary.main">
+              <Box
+                component="span"
+                color="primary.main"
+                fontWeight={600}
+                fontSize={30}
+              >
                 Pet
               </Box>
               <Box>
@@ -50,7 +71,12 @@ const Footer = () => {
                   alt="logo"
                 />
               </Box>
-              <Box component="span" color="primary.main">
+              <Box
+                component="span"
+                color="primary.main"
+                fontWeight={600}
+                fontSize={30}
+              >
                 Love
               </Box>
             </Stack>
