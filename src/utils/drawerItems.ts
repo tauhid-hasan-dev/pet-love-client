@@ -1,10 +1,9 @@
 import { DrawerItem, UserRole } from "@/types";
-
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
-import TryIcon from "@mui/icons-material/Try";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import PetsIcon from "@mui/icons-material/Pets";
 
 import { USER_ROLE } from "@/app/constants/role";
 
@@ -33,14 +32,14 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           icon: DashboardIcon,
         },
         {
-          title: "pets",
-          path: `${role}/pets`,
-          icon: TryIcon,
+          title: "Manage Pets",
+          path: `${role}/manage-pets`,
+          icon: PetsIcon,
         },
         {
-          title: "users",
-          path: `${role}/users`,
-          icon: MedicalInformationIcon,
+          title: "Manage Users",
+          path: `${role}/manage-user`,
+          icon: PeopleAltIcon,
         }
       );
       break;

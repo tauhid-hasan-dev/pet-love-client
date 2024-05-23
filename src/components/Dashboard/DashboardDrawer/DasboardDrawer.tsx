@@ -97,11 +97,9 @@ export default function DashboardDrawer({
             </Box>
             <Stack direction="row" gap={3}>
               <Avatar alt="profile" src="https://i.ibb.co/0rNMXrn/user.png" />
-              {isLoggedIn() && (
-                <Button color="error" onClick={handleLogOut}>
-                  Logout
-                </Button>
-              )}
+              <Button variant="outlined" color="error" onClick={handleLogOut}>
+                Logout
+              </Button>
             </Stack>
           </Box>
         </Toolbar>
