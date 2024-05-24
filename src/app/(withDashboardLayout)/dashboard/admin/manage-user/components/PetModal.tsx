@@ -1,11 +1,11 @@
+import TSNFileUploader from "@/components/Forms/TSNFileUploader";
 import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
 import TSNModal from "@/components/Shared/TSNModal/TSNModal";
+import { uploadImage } from "@/utils/uploadImage";
 import { Button, Grid } from "@mui/material";
-
 import React from "react";
 import { FieldValues } from "react-hook-form";
-import { toast } from "sonner";
 
 type TProps = {
   open: boolean;
@@ -14,7 +14,10 @@ type TProps = {
 
 const PetModal = ({ open, setOpen }: TProps) => {
   const handleFormSubmit = async (values: FieldValues) => {
-    console.log(values);
+    if (values.file) {
+      const productImage = await uploadImage(values.file);
+      console.log({ productImage });
+    }
   };
 
   return (
@@ -39,6 +42,9 @@ const PetModal = ({ open, setOpen }: TProps) => {
               fullWidth={true}
               name="password"
             />
+          </Grid>
+          <Grid item md={6}>
+            <TSNFileUploader name="file" label="Upload File" />
           </Grid>
         </Grid>
         <Button sx={{ mt: 1 }} type="submit">
