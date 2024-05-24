@@ -2,13 +2,14 @@ import TSNFileUploader from "@/components/Forms/TSNFileUploader";
 import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
 import TSNModal from "@/components/Shared/TSNModal/TSNModal";
-import { registerUser } from "@/services/actions/registerUser";
+// import { registerUser } from "@/services/actions/registerUser";
 import { uploadImage } from "@/utils/uploadImage";
 import { Button, Grid } from "@mui/material";
 import React from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useCreateUserMutation } from "@/redux/api/userApi";
 
 type TProps = {
   open: boolean;
@@ -17,6 +18,7 @@ type TProps = {
 
 const PetModal = ({ open, setOpen }: TProps) => {
   const router = useRouter();
+  const [createUser] = useCreateUserMutation();
   const handleFormSubmit = async (values: FieldValues) => {
     try {
       // Create a plain JavaScript object to hold the data
@@ -33,7 +35,7 @@ const PetModal = ({ open, setOpen }: TProps) => {
       }
 
       // Pass only the plain JavaScript object to registerUser function
-      const res = await registerUser(adminData);
+      const res = await createUser(adminData);
       console.log({ res });
       if (res?.data?.id) {
         toast.success("Admin Created Successfully");
