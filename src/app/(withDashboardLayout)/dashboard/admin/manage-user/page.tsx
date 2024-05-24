@@ -13,16 +13,17 @@ const ManageUsers = () => {
   const { data, isLoading } = useGetAllUserQuery({});
   console.log({ data });
 
-  /* const handleDelete = async (id: string) => {
-    try {
+  const handleDelete = async (id: string) => {
+    console.log(id);
+    /* try {
       const res = await deleteSpecialty(id).unwrap();
       if (res?.id) {
         toast.success("Specialty deleted successfully!!!");
       }
     } catch (err: any) {
       console.error(err.message);
-    }
-  }; */
+    } */
+  };
 
   // console.log(data);
   const columns: GridColDef[] = [
@@ -49,9 +50,7 @@ const ManageUsers = () => {
       align: "center",
       renderCell: ({ row }) => {
         return (
-          <IconButton
-            /* onClick={() => handleDelete(row.id)}  */ aria-label="delete"
-          >
+          <IconButton onClick={() => handleDelete(row.id)} aria-label="delete">
             <DeleteIcon />
           </IconButton>
         );
