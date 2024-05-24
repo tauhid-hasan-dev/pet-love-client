@@ -8,6 +8,7 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 type TProps = {
   open: boolean;
@@ -15,6 +16,7 @@ type TProps = {
 };
 
 const PetModal = ({ open, setOpen }: TProps) => {
+  const router = useRouter();
   const handleFormSubmit = async (values: FieldValues) => {
     try {
       // Create a plain JavaScript object to hold the data
@@ -35,6 +37,8 @@ const PetModal = ({ open, setOpen }: TProps) => {
       console.log({ res });
       if (res?.data?.id) {
         toast.success("Admin Created Successfully");
+        setOpen(false); // Close the modal
+        router.refresh();
       }
     } catch (err: any) {
       console.error(err.message);
