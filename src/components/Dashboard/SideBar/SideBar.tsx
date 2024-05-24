@@ -1,4 +1,5 @@
-import { Box, Divider, Link, List, Stack, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Box, Link, List, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 
 import assets from "@/assets";
@@ -8,7 +9,19 @@ import SidebarItem from "./SideBarItem";
 import { getUserInfo } from "@/services/auth.services";
 
 const SideBar = () => {
-  const { role } = getUserInfo();
+  const [role, setRole] = useState<UserRole | null>(null);
+
+  useEffect(() => {
+    const userInfo = getUserInfo();
+    if (userInfo && userInfo.role) {
+      setRole(userInfo.role);
+    }
+  }, []);
+
+  if (role === null) {
+    // You can add a loading state or return null if role is not yet available
+    return null; // or a loading spinner if preferred
+  }
 
   return (
     <Box>
@@ -49,7 +62,7 @@ const SideBar = () => {
       </Stack>
 
       <List>
-        {drawerItems(role as UserRole).map((item, index) => (
+        {drawerItems(role).map((item, index) => (
           <SidebarItem key={index} item={item} />
         ))}
       </List>

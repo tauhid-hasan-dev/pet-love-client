@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button, IconButton, Stack, TextField } from "@mui/material";
-import PetModal from "./components/PetModal";
+import UserModal from "./components/UserModal";
 import { useState } from "react";
 import { useGetAllUserQuery } from "@/redux/api/userApi";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
@@ -61,7 +61,7 @@ const ManageUsers = () => {
     <Box>
       <Stack direction="row" justifyContent="space-between">
         <Button onClick={() => setIsModalOpen(true)}>Create Admin</Button>
-        <PetModal open={isModalOpen} setOpen={setIsModalOpen}></PetModal>
+        <UserModal open={isModalOpen} setOpen={setIsModalOpen}></UserModal>
         <TextField size="small" placeholder="Search users"></TextField>
       </Stack>
       {!isLoading ? (

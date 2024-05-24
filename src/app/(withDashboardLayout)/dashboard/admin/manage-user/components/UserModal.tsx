@@ -16,7 +16,7 @@ type TProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const PetModal = ({ open, setOpen }: TProps) => {
+const UserModal = ({ open, setOpen }: TProps) => {
   const router = useRouter();
   const [createUser] = useCreateUserMutation();
   const handleFormSubmit = async (values: FieldValues) => {
@@ -82,4 +82,4 @@ const PetModal = ({ open, setOpen }: TProps) => {
   );
 };
 
-export default PetModal;
+export default UserModal;
