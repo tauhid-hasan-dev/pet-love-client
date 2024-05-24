@@ -2,10 +2,12 @@ import TSNFileUploader from "@/components/Forms/TSNFileUploader";
 import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
 import TSNModal from "@/components/Shared/TSNModal/TSNModal";
+import { registerUser } from "@/services/actions/registerUser";
 import { uploadImage } from "@/utils/uploadImage";
 import { Button, Grid } from "@mui/material";
 import React from "react";
 import { FieldValues } from "react-hook-form";
+import { toast } from "sonner";
 
 type TProps = {
   open: boolean;
@@ -14,9 +16,28 @@ type TProps = {
 
 const PetModal = ({ open, setOpen }: TProps) => {
   const handleFormSubmit = async (values: FieldValues) => {
-    if (values.file) {
-      const productImage = await uploadImage(values.file);
-      console.log({ productImage });
+    try {
+      // Create a plain JavaScript object to hold the data
+      const adminData: any = {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      };
+
+      // If file is present, upload it and add its URL to adminData
+      if (values.file) {
+        const profilePhoto = await uploadImage(values.file);
+        adminData.profilePhoto = profilePhoto;
+      }
+
+      // Pass only the plain JavaScript object to registerUser function
+      const res = await registerUser(adminData);
+      console.log({ res });
+      if (res?.data?.id) {
+        toast.success("Admin Created Successfully");
+      }
+    } catch (err: any) {
+      console.error(err.message);
     }
   };
 
