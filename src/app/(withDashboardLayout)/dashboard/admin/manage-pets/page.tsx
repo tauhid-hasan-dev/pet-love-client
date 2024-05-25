@@ -38,9 +38,9 @@ const PetManagement = () => {
   const pets = data?.pets || []; // Default to empty array if undefined
   const meta = data?.meta;
 
-  /* const handleDelete = async (id: string) => {
-    // console.log(id);
-    try {
+  const handleDelete = async (id: string) => {
+    console.log(id);
+    /* try {
       const res = await deleteDoctor(id).unwrap();
       // console.log(res);
       if (res?.id) {
@@ -48,14 +48,15 @@ const PetManagement = () => {
       }
     } catch (err: any) {
       console.error(err.message);
-    }
-  }; */
+    } */
+  };
 
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", flex: 1 },
-    { field: "species", headerName: "Species", flex: 1 },
+    { field: "species", headerName: "Type", flex: 1 },
     { field: "breed", headerName: "Breed", flex: 1 },
     { field: "location", headerName: "Location", flex: 1 },
+    { field: "medicalHistory", headerName: "Health Status", flex: 1 },
     {
       field: "action",
       headerName: "Action",
@@ -65,17 +66,17 @@ const PetManagement = () => {
       renderCell: ({ row }) => {
         return (
           <Box>
-            <IconButton
-              /* onClick={() => handleDelete(row.id)} */
-              aria-label="delete"
-            >
-              <DeleteIcon sx={{ color: "red" }} />
-            </IconButton>
             <Link href={`/dashboard/admin/doctors/edit/${row.id}`}>
               <IconButton aria-label="delete">
                 <EditIcon />
               </IconButton>
             </Link>
+            <IconButton
+              onClick={() => handleDelete(row.id)}
+              aria-label="delete"
+            >
+              <DeleteIcon sx={{ color: "red" }} />
+            </IconButton>
           </Box>
         );
       },
