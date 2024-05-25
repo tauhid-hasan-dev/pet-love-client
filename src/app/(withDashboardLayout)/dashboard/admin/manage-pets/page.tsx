@@ -18,25 +18,25 @@ import { useDebounced } from "@/redux/hooks";
 
 const PetManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  /* const query: Record<string, any> = {};
-  const [searchTerm, setSearchTerm] = useState<string>(""); */
+  const query: Record<string, any> = {};
+  const [searchTerm, setSearchTerm] = useState<string>("");
   // console.log(searchTerm);
 
-  /*  const debouncedTerm = useDebounced({
+  const debouncedTerm = useDebounced({
     searchQuery: searchTerm,
     delay: 600,
   });
 
   if (!!debouncedTerm) {
     query["searchTerm"] = searchTerm;
-  } */
+  }
 
   // const { data, isLoading } = useGetAllPetsQuery({ ...query });
-  const { data, isLoading } = useGetAllPetsQuery({});
+  const { data, isLoading } = useGetAllPetsQuery({ ...query });
   console.log(data);
   /* const [deleteDoctor] = useDeleteDoctorMutation() */
-  /* const pets = data?.pets;
-  const meta = data?.meta; */
+  const pets = data?.pets || []; // Default to empty array if undefined
+  const meta = data?.meta;
 
   /* const handleDelete = async (id: string) => {
     // console.log(id);
@@ -53,8 +53,9 @@ const PetManagement = () => {
 
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", flex: 1 },
-    { field: "type", headerName: "Type", flex: 1 },
-    { field: "age", headerName: "Age", flex: 1 },
+    { field: "species", headerName: "Species", flex: 1 },
+    { field: "breed", headerName: "Breed", flex: 1 },
+    { field: "location", headerName: "Location", flex: 1 },
     {
       field: "action",
       headerName: "Action",
@@ -87,14 +88,14 @@ const PetManagement = () => {
         <Button onClick={() => setIsModalOpen(true)}>Create New Pet</Button>
         <PetModal open={isModalOpen} setOpen={setIsModalOpen} />
         <TextField
-          /* onChange={(e) => setSearchTerm(e.target.value)} */
+          onChange={(e) => setSearchTerm(e.target.value)}
           size="small"
           placeholder="search pets"
         />
       </Stack>
       {!isLoading ? (
         <Box my={2}>
-          <DataGrid rows={data} columns={columns} />
+          <DataGrid rows={pets} columns={columns} />
         </Box>
       ) : (
         <h1>Loading.....</h1>
