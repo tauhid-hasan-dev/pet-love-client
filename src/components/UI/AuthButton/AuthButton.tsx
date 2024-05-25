@@ -14,9 +14,7 @@ const AuthButton = () => {
   return (
     <>
       {userInfo?.id ? (
-        <Button color="error" onClick={handleLogOut}>
-          Logout
-        </Button>
+        <Button onClick={handleLogOut}>Logout</Button>
       ) : (
         <Stack direction="row" gap={2}>
           <Button component={Link} href="/login">
