@@ -1,4 +1,5 @@
 import {
+  AppBar,
   Box,
   Button,
   Card,
@@ -7,11 +8,20 @@ import {
   CardMedia,
   Container,
   Grid,
+  MenuItem,
+  TextField,
+  Toolbar,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Link from "next/link";
+
+const filters = [
+  { label: "Size", options: ["Small", "Medium", "Large"] },
+  { label: "Gender", options: ["Male", "Female"] },
+  { label: "Health Status", options: ["Option 1", "Option 2", "Option 3"] },
+];
 
 const SearchPets = async () => {
   const res = await fetch(
@@ -30,15 +40,39 @@ const SearchPets = async () => {
     >
       <Box sx={{ textAlign: "center" }}>
         <Typography variant="h4" component="h1" fontWeight={700}>
-          Search your new best friend
+          Find your new best friend
         </Typography>
-        {/* <Typography component="p" fontSize={18} fontWeight={400} sx={{ mt: 2 }}>
-          Access to expert physicians and surgeons, advanced technologies
-        </Typography>
-        <Typography component="p" fontSize={18} fontWeight={400}>
-          and top-quality surgery facilities right here.
-        </Typography> */}
       </Box>
+
+      <Container>
+        <Grid container spacing={2} alignItems="center" py={3}>
+          <Grid item xs={12} sm={6} md={4} lg={6}>
+            <TextField
+              variant="outlined"
+              size="small"
+              placeholder="Search"
+              fullWidth
+            />
+          </Grid>
+          {filters.map((filter, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4} lg={2}>
+              <TextField
+                size="small"
+                select
+                label={filter.label}
+                variant="outlined"
+                fullWidth
+              >
+                {filter.options.map((option, idx) => (
+                  <MenuItem key={idx} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
       <Container sx={{ margin: "30px auto" }}>
         <Grid container spacing={2}>
@@ -83,30 +117,16 @@ const SearchPets = async () => {
                   }}
                 >
                   {/* <Button>Book Now</Button> */}
-                  <Button variant="outlined" fullWidth>
-                    View Details
-                  </Button>
+                  <Link href={`/pet/${pet.id}`}>
+                    <Button variant="outlined" fullWidth>
+                      View Details
+                    </Button>
+                  </Link>
                 </CardActions>
               </Card>
             </Grid>
           ))}
         </Grid>
-        <Box
-          sx={{
-            textAlign: "center",
-          }}
-        >
-          <Button
-            variant="outlined"
-            sx={{
-              marginTop: "20px",
-            }}
-            component={Link}
-            href="/doctors"
-          >
-            View ALL
-          </Button>
-        </Box>
       </Container>
     </Box>
   );
