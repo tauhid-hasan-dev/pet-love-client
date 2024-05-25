@@ -66,8 +66,8 @@ const PetManagement = () => {
       renderCell: ({ row }) => {
         return (
           <Box>
-            <Link href={`/dashboard/admin/doctors/edit/${row.id}`}>
-              <IconButton aria-label="delete">
+            <Link href={`/dashboard/admin/pets/edit/${row.id}`}>
+              <IconButton aria-label="edit">
                 <EditIcon />
               </IconButton>
             </Link>

@@ -17,8 +17,7 @@ const PetModal = ({ open, setOpen }: TProps) => {
   /* const [createDoctor] = useCreateDoctorMutation(); */
   const handleFormSubmit = async (values: FieldValues) => {
     // console.log(values);
-    /* values.doctor.experience = Number(values.doctor.experience);
-    values.doctor.apointmentFee = Number(values.doctor.apointmentFee);
+    /* values.age = Number(values.age);
     const data = modifyPayload(values);
     try {
       const res = await createDoctor(data).unwrap();
@@ -33,120 +32,116 @@ const PetModal = ({ open, setOpen }: TProps) => {
   };
 
   const defaultValues = {
-    doctor: {
-      email: "",
-      name: "",
-      contactNumber: "",
-      address: "",
-      registrationNumber: "",
-      gender: "",
-      experience: 0,
-      apointmentFee: 0,
-      qualification: "",
-      currentWorkingPlace: "",
-      designation: "",
-      profilePhoto: "",
-    },
-    password: "",
+    name: "",
+    species: "",
+    breed: "",
+    age: 0,
+    size: "",
+    location: "",
+    description: "",
+    temperament: "",
+    medicalHistory: "",
+    adoptionRequirements: "",
+    designation: "",
+    profilePhoto: "",
   };
 
   return (
-    <TSNFullScreenModal open={open} setOpen={setOpen} title="Create New Doctor">
+    <TSNFullScreenModal open={open} setOpen={setOpen} title="Create New Pet">
       <TSNForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
         <Grid container spacing={2} sx={{ my: 5 }}>
           <Grid item xs={12} sm={12} md={4}>
             <TSNInput
-              name="doctor.name"
+              name="name"
               label="Name"
               fullWidth={true}
               sx={{ mb: 2 }}
+              required
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <TSNInput
-              name="doctor.email"
-              type="email"
-              label="Email"
+              name="species"
+              label="Type"
               fullWidth={true}
               sx={{ mb: 2 }}
+              required
             />
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
             <TSNInput
-              name="password"
-              type="password"
-              label="Password"
+              name="breed"
+              label="Breed"
               fullWidth={true}
               sx={{ mb: 2 }}
+              required
             />
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
             <TSNInput
-              name="doctor.contactNumber"
-              label="Contract Number"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4}>
-            <TSNInput
-              name="doctor.address"
-              label="Address"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4}>
-            <TSNInput
-              name="doctor.registrationNumber"
-              label="Registration Number"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4}>
-            <TSNInput
-              name="doctor.experience"
+              name="age"
+              label="Age"
               type="number"
-              label="Experience"
               fullWidth={true}
               sx={{ mb: 2 }}
+              required
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <TSNInput
-              name="doctor.apointmentFee"
-              type="number"
-              label="ApointmentFee"
+              name="size"
+              label="Size"
               fullWidth={true}
               sx={{ mb: 2 }}
+              required
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <TSNInput
-              name="doctor.qualification"
-              label="Qualification"
+              name="location"
+              label="Location"
               fullWidth={true}
               sx={{ mb: 2 }}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={4}>
+            <TSNInput
+              name="description"
+              label="Description"
+              fullWidth={true}
+              sx={{ mb: 2 }}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={4}>
+            <TSNInput
+              name="temperament"
+              label="Temperament"
+              fullWidth={true}
+              sx={{ mb: 2 }}
+              required
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={4}>
+            <TSNInput
+              name="medicalHistory"
+              label="Health Status"
+              fullWidth={true}
+              sx={{ mb: 2 }}
+              required
             />
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
             <TSNInput
-              name="doctor.currentWorkingPlace"
-              label="Current Working Place"
+              name="adoptionRequirements"
+              label="Requirements"
               fullWidth={true}
               sx={{ mb: 2 }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4}>
-            <TSNInput
-              name="doctor.designation"
-              label="Designation"
-              fullWidth={true}
-              sx={{ mb: 2 }}
+              required
             />
           </Grid>
         </Grid>
