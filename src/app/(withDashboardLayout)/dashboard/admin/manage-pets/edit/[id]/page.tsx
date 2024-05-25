@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 type TParams = {
   params: {
-    doctorId: string;
+    id: string;
   };
 };
 
@@ -18,23 +18,22 @@ const PetEditPage = ({ params }: TParams) => {
   //   console.log(params?.doctorId);
   const router = useRouter();
 
-  const id = params?.doctorId;
-  console.log(id);
+  const petId = params?.id;
+  console.log(petId);
 
-  const { data, isLoading } = useGetPetQuery(id);
+  const { data, isLoading } = useGetPetQuery(petId);
   const [editPet] = useEditPetMutation();
   //   console.log(data);
 
   const handleFormSubmit = async (values: FieldValues) => {
-    data.age = Number(values.age);
-    values.id = id;
-    // console.log({ id: values.id, body: values });
+    values.age = Number(values.age);
 
+    console.log(petId, values);
     try {
-      const res = await editPet({ id: values.id, body: values }).unwrap();
+      const res = await editPet({ id: petId, body: values }).unwrap();
       if (res?.id) {
         toast.success("Pet Updated Successfully!!!");
-        router.push("/dashboard/admin/pets");
+        router.push("/dashboard/admin/manage-pets");
       }
     } catch (err: any) {
       console.error(err);
@@ -42,6 +41,19 @@ const PetEditPage = ({ params }: TParams) => {
   };
 
   const defaultValues = {
+    name: data?.name || "",
+    species: data?.species || "",
+    breed: data?.breed || "",
+    age: data?.age || 0,
+    size: data?.size || "",
+    location: data?.location || "",
+    description: data?.description || "",
+    temperament: data?.temperament || "",
+    medicalHistory: data?.medicalHistory || "",
+    adoptionRequirements: data?.adoptionRequirements || "",
+  };
+
+  /* const defaultValues = {
     email: data?.email || "",
     name: data?.name || "",
     contactNumber: data?.contactNumber || "",
@@ -53,7 +65,8 @@ const PetEditPage = ({ params }: TParams) => {
     qualification: data?.qualification || "",
     currentWorkingPlace: data?.currentWorkingPlace || "",
     designation: data?.designation || "",
-  };
+  }; */
+
   return (
     <Box>
       <Typography component="h5" variant="h5">
