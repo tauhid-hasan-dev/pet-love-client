@@ -24,10 +24,10 @@ const PetModal = ({ open, setOpen }: TProps) => {
     try {
       const res = await createPet(values).unwrap();
       console.log(res);
-      /* if (res?.id) {
+      if (res?.id) {
         toast.success("Pet created successfully!!!");
         setOpen(false);
-      } */
+      }
     } catch (err: any) {
       console.error(err);
     }
