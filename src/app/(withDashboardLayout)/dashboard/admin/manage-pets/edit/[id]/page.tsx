@@ -53,20 +53,6 @@ const PetEditPage = ({ params }: TParams) => {
     adoptionRequirements: data?.adoptionRequirements || "",
   };
 
-  /* const defaultValues = {
-    email: data?.email || "",
-    name: data?.name || "",
-    contactNumber: data?.contactNumber || "",
-    address: data?.address || "",
-    registrationNumber: data?.registrationNumber || "",
-    gender: data?.gender || "",
-    experience: data?.experience || 0,
-    apointmentFee: data?.apointmentFee || 0,
-    qualification: data?.qualification || "",
-    currentWorkingPlace: data?.currentWorkingPlace || "",
-    designation: data?.designation || "",
-  }; */
-
   return (
     <Box>
       <Typography component="h5" variant="h5">
