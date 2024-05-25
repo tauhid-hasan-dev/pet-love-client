@@ -6,6 +6,8 @@ import TSNInput from "@/components/Forms/TSNInput";
 import TSNFullScreenModal from "@/components/Shared/TSNModal/TSNFullScreenModal";
 import { useCreatePetMutation } from "@/redux/api/petApi";
 import { toast } from "sonner";
+import TSNFileUploader from "@/components/Forms/TSNFileUploader";
+import { uploadImage } from "@/utils/uploadImage";
 
 // import { toast } from "sonner";
 // import TSNSelectField from "@/components/Forms/TSNSelecteField";
@@ -17,12 +19,20 @@ type TProps = {
 
 const PetModal = ({ open, setOpen }: TProps) => {
   const [createPet] = useCreatePetMutation();
+
   const handleFormSubmit = async (values: FieldValues) => {
-    // console.log(values);
-    values.age = Number(values.age);
-    console.log(values);
+    const { file, ...data } = values;
+    if (file) {
+      const photo = await uploadImage(values.file);
+      if (!data.photos || !Array.isArray(data.photos)) {
+        data.photos = [];
+      }
+      data.photos.push(photo);
+    }
+    data.age = Number(values.age);
+    console.log({ data });
     try {
-      const res = await createPet(values).unwrap();
+      const res = await createPet(data).unwrap();
       console.log(res);
       if (res?.id) {
         toast.success("Pet created successfully!!!");
@@ -144,6 +154,9 @@ const PetModal = ({ open, setOpen }: TProps) => {
               required
             />
           </Grid>
+        </Grid>
+        <Grid item xs={12} sm={12} md={4}>
+          <TSNFileUploader name="file" label="Upload File" />
         </Grid>
 
         <Button type="submit">Create</Button>

@@ -22,12 +22,15 @@ const petApi = baseApi.injectEndpoints({
     }), */
 
     createPet: build.mutation({
-      query: (data) => ({
-        url: "/pets",
-        method: "POST",
-        contentType: "application/json",
-        data,
-      }),
+      query: (data) => {
+        console.log("coming from pet api", data); // You can log the data here if needed
+        return {
+          url: "/pets",
+          method: "POST",
+          contentType: "application/json",
+          data,
+        };
+      },
       invalidatesTags: [tagTypes.pet],
     }),
 
