@@ -164,7 +164,7 @@ const PetModal = ({ open, setOpen }: TProps) => {
             />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={2}>
+          <Grid item xs={12} sm={12} md={3}>
             {/* Adjusted file uploader to accept multiple files */}
             <input
               accept="image/*"
@@ -176,7 +176,8 @@ const PetModal = ({ open, setOpen }: TProps) => {
             />
             <label htmlFor="file">
               <Button variant="outlined" component="span">
-                <CloudUploadIcon style={{ marginRight: "8px" }} /> Upload Images
+                <CloudUploadIcon style={{ marginRight: "8px" }} /> Upload
+                Multiple Images
               </Button>
             </label>
           </Grid>
