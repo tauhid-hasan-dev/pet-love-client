@@ -8,6 +8,7 @@ import { useCreatePetMutation } from "@/redux/api/petApi";
 import { toast } from "sonner";
 import TSNFileUploader from "@/components/Forms/TSNFileUploader";
 import { uploadImage } from "@/utils/uploadImage";
+import { useState } from "react";
 
 // import { toast } from "sonner";
 // import TSNSelectField from "@/components/Forms/TSNSelecteField";
@@ -18,16 +19,15 @@ type TProps = {
 };
 
 const PetModal = ({ open, setOpen }: TProps) => {
+  const [files, setFiles] = useState<FileList | null>(null);
   const [createPet] = useCreatePetMutation();
 
   const handleFormSubmit = async (values: FieldValues) => {
     const { file, ...data } = values;
-    if (file) {
-      const photo = await uploadImage(values.file);
-      if (!data.photos || !Array.isArray(data.photos)) {
-        data.photos = [];
-      }
-      data.photos.push(photo);
+    if (files) {
+      const photoPromises = Array.from(files).map(uploadImage); // Map over files and upload each
+      const uploadedPhotos = await Promise.all(photoPromises); // Wait for all uploads
+      data.photos = uploadedPhotos; // Assign uploaded photos to data
     }
     data.age = Number(values.age);
     console.log({ data });
@@ -40,6 +40,13 @@ const PetModal = ({ open, setOpen }: TProps) => {
       }
     } catch (err: any) {
       console.error(err);
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = event.target.files;
+    if (fileList) {
+      setFiles(fileList); // Store the selected files in state
     }
   };
 
@@ -156,7 +163,20 @@ const PetModal = ({ open, setOpen }: TProps) => {
           </Grid>
         </Grid>
         <Grid item xs={12} sm={12} md={4}>
-          <TSNFileUploader name="file" label="Upload File" />
+          {/* Adjusted file uploader to accept multiple files */}
+          <input
+            accept="image/*"
+            id="file"
+            type="file"
+            multiple // Allow multiple files
+            onChange={handleFileChange} // Call the handler on file change
+            style={{ display: "none" }} // Hide the input field
+          />
+          <label htmlFor="file">
+            <Button variant="outlined" component="span">
+              Upload Files
+            </Button>
+          </label>
         </Grid>
 
         <Button type="submit">Create</Button>
