@@ -6,7 +6,8 @@ import { axiosBaseQuery } from "@/helpers/axios/axiosBaseQuery";
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    /*  baseUrl: "http://localhost:5000/api", */
+    baseUrl: "https://pet-adoption-plaform-a8.vercel.app/api",
   }),
   endpoints: () => ({}),
   tagTypes: tagTypesList,

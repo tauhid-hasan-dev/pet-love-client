@@ -20,6 +20,7 @@ const UserModal = ({ open, setOpen }: TProps) => {
   const router = useRouter();
   const [createUser] = useCreateUserMutation();
   const handleFormSubmit = async (values: FieldValues) => {
+    console.log({ values });
     try {
       // Create a plain JavaScript object to hold the data
       const adminData: any = {
@@ -31,8 +32,11 @@ const UserModal = ({ open, setOpen }: TProps) => {
       // If file is present, upload it and add its URL to adminData
       if (values.file) {
         const profilePhoto = await uploadImage(values.file);
+        console.log({ profilePhoto });
         adminData.profilePhoto = profilePhoto;
       }
+
+      console.log({ adminData });
 
       // Pass only the plain JavaScript object to registerUser function
       const res = await createUser(adminData);
