@@ -52,15 +52,15 @@ const PetManagement = () => {
   };
 
   const columns: GridColDef[] = [
-    { field: "name", headerName: "Name", flex: 1 },
-    { field: "species", headerName: "Type", flex: 1 },
-    { field: "breed", headerName: "Breed", flex: 1 },
+    { field: "name", headerName: "Name", flex: 0.7 },
+    { field: "species", headerName: "Type", flex: 0.6 },
+    { field: "breed", headerName: "Breed", flex: 0.7 },
     { field: "location", headerName: "Location", flex: 1 },
     { field: "medicalHistory", headerName: "Health Status", flex: 1 },
     {
       field: "action",
       headerName: "Action",
-      flex: 1,
+      flex: 0.4,
       headerAlign: "center",
       align: "center",
       renderCell: ({ row }) => {

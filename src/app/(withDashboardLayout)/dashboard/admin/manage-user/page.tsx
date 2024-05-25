@@ -29,8 +29,8 @@ const ManageUsers = () => {
   const columns: GridColDef[] = [
     {
       field: "icon",
-      headerName: "Icon",
-
+      headerName: "Photo",
+      flex: 0.3,
       renderCell: ({ row }) => {
         return (
           <Box>
@@ -39,20 +39,51 @@ const ManageUsers = () => {
         );
       },
     },
-    { field: "name", headerName: "Name", width: 400 },
-    { field: "email", headerName: "Email", width: 400 },
+    { field: "name", headerName: "Name", flex: 0.6 },
+    { field: "email", headerName: "Email", flex: 1 },
+    { field: "role", headerName: "Role", flex: 0.5 },
+    {
+      field: "Assign Role",
+      headerName: "Assign Role",
+      flex: 0.7,
+      renderCell: ({ row }) => {
+        return (
+          <Button variant="outlined" size="small">
+            Assign
+          </Button>
+        );
+      },
+    },
+    { field: "status", headerName: "Status", flex: 0.5 },
+    {
+      field: "Update Status",
+      headerName: "Update Status",
+      flex: 0.6,
+      renderCell: ({ row }) => {
+        return (
+          <Button variant="outlined" size="small">
+            Update
+          </Button>
+        );
+      },
+    },
 
     {
       field: "action",
       headerName: "Action",
-      flex: 1,
+      flex: 0.4,
       headerAlign: "center",
       align: "center",
       renderCell: ({ row }) => {
         return (
-          <IconButton onClick={() => handleDelete(row.id)} aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
+          <>
+            <IconButton
+              onClick={() => handleDelete(row.id)}
+              aria-label="delete"
+            >
+              <DeleteIcon sx={{ color: "red" }} />
+            </IconButton>
+          </>
         );
       },
     },
