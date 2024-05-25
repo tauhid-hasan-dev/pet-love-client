@@ -4,6 +4,8 @@ import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
 
 import TSNFullScreenModal from "@/components/Shared/TSNModal/TSNFullScreenModal";
+import { useCreatePetMutation } from "@/redux/api/petApi";
+import { toast } from "sonner";
 
 // import { toast } from "sonner";
 // import TSNSelectField from "@/components/Forms/TSNSelecteField";
@@ -14,21 +16,21 @@ type TProps = {
 };
 
 const PetModal = ({ open, setOpen }: TProps) => {
-  /* const [createDoctor] = useCreateDoctorMutation(); */
+  const [createPet] = useCreatePetMutation();
   const handleFormSubmit = async (values: FieldValues) => {
     // console.log(values);
-    /* values.age = Number(values.age);
-    const data = modifyPayload(values);
+    values.age = Number(values.age);
+    console.log(values);
     try {
-      const res = await createDoctor(data).unwrap();
+      const res = await createPet(values).unwrap();
       console.log(res);
-      if (res?.id) {
-        toast.success("Doctor created successfully!!!");
+      /* if (res?.id) {
+        toast.success("Pet created successfully!!!");
         setOpen(false);
-      }
+      } */
     } catch (err: any) {
       console.error(err);
-    } */
+    }
   };
 
   const defaultValues = {
@@ -42,8 +44,6 @@ const PetModal = ({ open, setOpen }: TProps) => {
     temperament: "",
     medicalHistory: "",
     adoptionRequirements: "",
-    designation: "",
-    profilePhoto: "",
   };
 
   return (

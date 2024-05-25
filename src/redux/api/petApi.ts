@@ -5,6 +5,22 @@ import { IMeta } from "@/types";
 
 const petApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
+    /*  createPet: build.mutation({
+      query: (data) => {
+        // Log the data before sending it
+        console.log(data);
+        return {
+          url: "/pets",
+          method: "POST",
+          body: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      },
+      invalidatesTags: [tagTypes.pet],
+    }), */
+
     createPet: build.mutation({
       query: (data) => ({
         url: "/pets",
@@ -24,14 +40,6 @@ const petApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.pet],
     }),
-
-    /* getAllPets: build.query({
-      query: () => ({
-        url: "/pets",
-        method: "GET",
-      }),
-      providesTags: [tagTypes.pet],
-    }), */
 
     getAllPets: build.query({
       query: (arg: Record<string, any>) => ({
