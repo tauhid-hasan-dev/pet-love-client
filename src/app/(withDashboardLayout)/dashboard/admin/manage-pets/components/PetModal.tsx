@@ -6,9 +6,11 @@ import TSNInput from "@/components/Forms/TSNInput";
 import TSNFullScreenModal from "@/components/Shared/TSNModal/TSNFullScreenModal";
 import { useCreatePetMutation } from "@/redux/api/petApi";
 import { toast } from "sonner";
-import TSNFileUploader from "@/components/Forms/TSNFileUploader";
 import { uploadImage } from "@/utils/uploadImage";
 import { useState } from "react";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Margin } from "@mui/icons-material";
 
 // import { toast } from "sonner";
 // import TSNSelectField from "@/components/Forms/TSNSelecteField";
@@ -161,22 +163,38 @@ const PetModal = ({ open, setOpen }: TProps) => {
               required
             />
           </Grid>
-        </Grid>
-        <Grid item xs={12} sm={12} md={4}>
-          {/* Adjusted file uploader to accept multiple files */}
-          <input
-            accept="image/*"
-            id="file"
-            type="file"
-            multiple // Allow multiple files
-            onChange={handleFileChange} // Call the handler on file change
-            style={{ display: "none" }} // Hide the input field
-          />
-          <label htmlFor="file">
-            <Button variant="outlined" component="span">
-              Upload Files
-            </Button>
-          </label>
+
+          <Grid item xs={12} sm={12} md={2}>
+            {/* Adjusted file uploader to accept multiple files */}
+            <input
+              accept="image/*"
+              id="file"
+              type="file"
+              multiple // Allow multiple files
+              onChange={handleFileChange} // Call the handler on file change
+              style={{ display: "none" }} // Hide the input field
+            />
+            <label htmlFor="file">
+              <Button variant="outlined" component="span">
+                <CloudUploadIcon style={{ marginRight: "8px" }} /> Upload Images
+              </Button>
+            </label>
+          </Grid>
+
+          {/* Display uploaded files count and file names */}
+          {files && (
+            <Grid item xs={12} sm={12} md={4}>
+              <ul>
+                <li style={{ color: "blue" }}>{files.length} files uploaded</li>
+                {[...Array.from(files)].map((file, index) => (
+                  <li key={index}>
+                    <span>{file.name}</span>
+                    <CheckCircleIcon style={{ color: "green" }} />
+                  </li>
+                ))}
+              </ul>
+            </Grid>
+          )}
         </Grid>
 
         <Button type="submit">Create</Button>
