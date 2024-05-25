@@ -59,6 +59,14 @@ const petApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.pet],
     }),
 
+    getPet: build.query({
+      query: (id: string | string[] | undefined) => ({
+        url: `/pets/${id}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.pet],
+    }),
+
     deletePet: build.mutation({
       query: (id) => ({
         url: `/pets/${id}`,
@@ -73,4 +81,6 @@ export const {
   useCreatePetMutation,
   useDeletePetMutation,
   useGetAllPetsQuery,
+  useEditPetMutation,
+  useGetPetQuery,
 } = petApi;
