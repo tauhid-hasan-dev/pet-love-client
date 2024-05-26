@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 import { getUserInfo } from "@/services/auth.services";
+import { Height } from "@mui/icons-material";
 
 type TProps = {
   open: boolean;
@@ -95,6 +96,7 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
               type="text"
               fullWidth={true}
               name="petOwnershipExperience"
+              multiline
             />
           </Grid>
         </Grid>

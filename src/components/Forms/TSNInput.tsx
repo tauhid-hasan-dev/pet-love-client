@@ -11,6 +11,7 @@ type TInputProps = {
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
+  multiline?: boolean;
 };
 
 const TSNInput = ({
@@ -22,6 +23,7 @@ const TSNInput = ({
   sx,
   required,
   disabled,
+  multiline = false,
 }: TInputProps) => {
   const { control } = useFormContext();
   return (
@@ -42,6 +44,8 @@ const TSNInput = ({
           disabled={disabled}
           error={!!error?.message}
           helperText={error?.message}
+          multiline={multiline}
+          minRows={multiline ? 3 : undefined}
         />
       )}
     />
