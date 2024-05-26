@@ -165,14 +165,13 @@ const PetModal = ({ open, setOpen }: TProps) => {
           </Grid>
 
           <Grid item xs={12} sm={12} md={3}>
-            {/* Adjusted file uploader to accept multiple files */}
             <input
               accept="image/*"
               id="file"
               type="file"
-              multiple // Allow multiple files
-              onChange={handleFileChange} // Call the handler on file change
-              style={{ display: "none" }} // Hide the input field
+              multiple
+              onChange={handleFileChange}
+              style={{ display: "none" }}
             />
             <label htmlFor="file">
               <Button variant="outlined" component="span">

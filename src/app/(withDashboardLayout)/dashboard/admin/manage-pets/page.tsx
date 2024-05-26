@@ -15,6 +15,7 @@ import Link from "next/link";
 import PetModal from "./components/PetModal";
 import { useGetAllPetsQuery } from "@/redux/api/petApi";
 import { useDebounced } from "@/redux/hooks";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const PetManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -99,7 +100,16 @@ const PetManagement = () => {
           <DataGrid rows={pets} columns={columns} />
         </Box>
       ) : (
-        <h1>Loading.....</h1>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "calc(100vh - 100px)",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       )}
     </Box>
   );
