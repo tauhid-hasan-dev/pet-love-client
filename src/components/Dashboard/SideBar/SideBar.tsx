@@ -28,6 +28,7 @@ const SideBar = () => {
       <Stack
         sx={{
           py: 2,
+          textDecoration: "none",
         }}
         direction="row"
         justifyContent="center"
