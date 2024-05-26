@@ -11,8 +11,9 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import Image from "next/image"; // Import the Image component from next/image
-import React from "react";
+import Image from "next/image";
+import React, { useState } from "react";
+import RequestModal from "../../components/RequestModel";
 
 type TParams = {
   params: {
@@ -21,6 +22,7 @@ type TParams = {
 };
 
 const PetDetails = ({ params }: TParams) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const petId = params?.id;
   console.log(petId);
 
@@ -48,12 +50,12 @@ const PetDetails = ({ params }: TParams) => {
           justifyContent: "center",
         }}
       >
-        Details of {pet.name}
+        Details of {pet?.name}
       </Typography>
       <Grid container spacing={2}>
         <Grid item md={8}>
           <Grid container spacing={2}>
-            {pet.photos?.map((pet: any, index: number) => (
+            {pet?.photos?.map((pet: any, index: number) => (
               <Grid item key={index} xs={12} md={4}>
                 <Card>
                   <Box
@@ -94,8 +96,15 @@ const PetDetails = ({ params }: TParams) => {
                 }}
               >
                 <Stack gap={2}>
-                  <h1>Considering {pet.name} for adoption?</h1>
-                  <Button fullWidth>Request for Adoption</Button>
+                  <h1>Considering {pet?.name} for adoption?</h1>
+                  <Button onClick={() => setIsModalOpen(true)}>
+                    Request for Adoption
+                  </Button>
+                  <RequestModal
+                    open={isModalOpen}
+                    setOpen={setIsModalOpen}
+                    petId={petId}
+                  ></RequestModal>
                 </Stack>
               </Box>
             </Card>
@@ -110,25 +119,27 @@ const PetDetails = ({ params }: TParams) => {
               >
                 <Stack gap={2}>
                   <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Name:</span> {pet.name}
+                    <span style={{ fontWeight: "bold" }}>Name:</span>{" "}
+                    {pet?.name}
                   </Typography>
                   <Typography variant="h6">
                     <span style={{ fontWeight: "bold" }}>Type:</span>{" "}
-                    {pet.species}
+                    {pet?.species}
                   </Typography>
                   <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Age:</span> {pet.age}
+                    <span style={{ fontWeight: "bold" }}>Age:</span> {pet?.age}
                   </Typography>
                   <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Size:</span> {pet.size}
+                    <span style={{ fontWeight: "bold" }}>Size:</span>{" "}
+                    {pet?.size}
                   </Typography>
                   <Typography variant="h6">
                     <span style={{ fontWeight: "bold" }}>Health Status:</span>{" "}
-                    {pet.medicalHistory}
+                    {pet?.medicalHistory}
                   </Typography>
                   <Typography variant="h6">
                     <span style={{ fontWeight: "bold" }}>Location:</span>{" "}
-                    {pet.location}
+                    {pet?.location}
                   </Typography>
                 </Stack>
               </Box>
