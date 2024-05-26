@@ -10,6 +10,7 @@ type TInputProps = {
   sx?: SxProps;
   placeholder?: string;
   required?: boolean;
+  disabled?: boolean;
 };
 
 const TSNInput = ({
@@ -20,6 +21,7 @@ const TSNInput = ({
   fullWidth,
   sx,
   required,
+  disabled,
 }: TInputProps) => {
   const { control } = useFormContext();
   return (
@@ -37,6 +39,7 @@ const TSNInput = ({
           fullWidth={fullWidth}
           placeholder={label}
           required={required}
+          disabled={disabled}
           error={!!error?.message}
           helperText={error?.message}
         />

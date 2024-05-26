@@ -47,7 +47,7 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
   const handleFormSubmit = async (values: FieldValues) => {
     console.log({ values });
     try {
-      const adminData: any = {
+      const requestAdoptionData: any = {
         petId: petId,
         name: values.name,
         email: values.email,
@@ -71,7 +71,13 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
       <TSNForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
         <Grid container direction="row" spacing={2} mb={1}>
           <Grid item md={6}>
-            <TSNInput label="Name" type="name" fullWidth={true} name="name" />
+            <TSNInput
+              label="Name"
+              type="name"
+              fullWidth={true}
+              name="name"
+              disabled
+            />
           </Grid>
 
           <Grid item md={6}>
@@ -80,6 +86,7 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
               type="email"
               fullWidth={true}
               name="email"
+              disabled
             />
           </Grid>
           <Grid item md={12}>
