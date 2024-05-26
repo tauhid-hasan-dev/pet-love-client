@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 
 import { getUserInfo } from "@/services/auth.services";
 import { Height } from "@mui/icons-material";
+import { useCreateAdoptionRequestMutation } from "@/redux/api/adoptionRequestApi";
 
 type TProps = {
   open: boolean;
@@ -39,6 +40,8 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
     }
   }, []);
 
+  const [createAdoptionRequest] = useCreateAdoptionRequestMutation();
+
   const defaultValues = {
     name: user?.name || "",
     email: user?.email || "",
@@ -56,21 +59,20 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
     try {
       const requestAdoptionData: any = {
         petId: petId,
-        name: user?.name,
-        email: user?.email,
+        userName: user?.name,
+        userEmail: user?.email,
         petOwnershipExperience: values.petOwnershipExperience,
       };
 
       console.log({ requestAdoptionData });
 
-      /* const res = await create(adminData);
+      const res = await createAdoptionRequest(requestAdoptionData);
       console.log({ res });
 
       if (res?.data?.id) {
         toast.success("Adoption request submitted Successfully");
         setOpen(false);
-    
-      } */
+      }
     } catch (err: any) {
       console.error(err.message);
     }
@@ -106,6 +108,7 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
           <Grid item md={12}>
             <TSNInput
               label="Pet Ownership Experience"
+              
               type="text"
               fullWidth={true}
               name="petOwnershipExperience"
