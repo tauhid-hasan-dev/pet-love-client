@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
 import { zodResolver } from "@hookform/resolvers/zod";
+import HomeIcon from "@mui/icons-material/Home";
 
 export const validationSchema = z.object({
   email: z.string().email("Please enter a valid email address!"),
@@ -55,6 +56,23 @@ const LoginPage = () => {
       >
         <Box
           sx={{
+            position: "absolute",
+            top: 16,
+            left: 16,
+          }}
+        >
+          <Link href="/">
+            <HomeIcon
+              sx={{
+                color: "#6504B5",
+                width: 30,
+                height: 30,
+              }}
+            />
+          </Link>
+        </Box>
+        <Box
+          sx={{
             maxWidth: 400,
             width: "100%",
             boxShadow: 1,
@@ -69,9 +87,16 @@ const LoginPage = () => {
               alignItems: "center",
             }}
           >
-            <Box>
-              <Image src={assets.svgs.logo} width={50} height={50} alt="logo" />
-            </Box>
+            <Link href="/">
+              <Box>
+                <Image
+                  src={assets.svgs.logo}
+                  width={50}
+                  height={50}
+                  alt="logo"
+                />
+              </Box>
+            </Link>
             <Box>
               <Typography variant="h6" fontWeight={600}>
                 Login
