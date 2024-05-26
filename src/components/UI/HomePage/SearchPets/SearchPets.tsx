@@ -85,8 +85,9 @@ const SearchPets = () => {
             <TextField
               onChange={(e) => setSearchTerm(e.target.value)}
               value={searchTerm}
+              /* variant="filled" */
               variant="outlined"
-              size="small"
+              size="medium"
               placeholder="Search"
               fullWidth
               InputProps={{
@@ -101,7 +102,7 @@ const SearchPets = () => {
           {filters.map((filter, index) => (
             <Grid item key={index} xs={12} sm={6} md={4} lg={2}>
               <TextField
-                size="small"
+                size="medium"
                 select
                 label={filter.label}
                 variant="outlined"
