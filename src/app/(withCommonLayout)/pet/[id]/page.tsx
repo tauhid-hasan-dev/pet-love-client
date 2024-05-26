@@ -1,7 +1,14 @@
 "use client";
 
 import { useGetPetQuery } from "@/redux/api/petApi";
-import { Box, Card, Container, Grid } from "@mui/material";
+import {
+  Box,
+  Card,
+  Container,
+  Grid,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import Image from "next/image"; // Import the Image component from next/image
 import React from "react";
 
@@ -19,7 +26,12 @@ const PetDetails = ({ params }: TParams) => {
   console.log(data);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Box textAlign="center" my={4}>
+        <CircularProgress />
+        <Typography variant="h6">Loading...</Typography>
+      </Box>
+    );
   }
 
   return (
@@ -60,7 +72,7 @@ const PetDetails = ({ params }: TParams) => {
             <Box
               sx={{
                 width: "100%",
-                height: 300,
+                height: "100%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
