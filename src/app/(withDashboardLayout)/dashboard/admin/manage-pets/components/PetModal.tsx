@@ -11,6 +11,8 @@ import { useState } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Margin } from "@mui/icons-material";
+import TSNSelectField from "@/components/Forms/TSNSelecteField";
+import { Gender, petSize, petType } from "@/types/common";
 
 // import { toast } from "sonner";
 // import TSNSelectField from "@/components/Forms/TSNSelecteField";
@@ -58,6 +60,7 @@ const PetModal = ({ open, setOpen }: TProps) => {
     breed: "",
     age: 0,
     size: "",
+    gender: "",
     location: "",
     description: "",
     temperament: "",
@@ -78,11 +81,21 @@ const PetModal = ({ open, setOpen }: TProps) => {
               required
             />
           </Grid>
-          <Grid item xs={12} sm={12} md={4}>
+          {/* <Grid item xs={12} sm={12} md={4}>
             <TSNInput
               name="species"
               label="Type"
               fullWidth={true}
+              sx={{ mb: 2 }}
+              required
+            />
+          </Grid> */}
+
+          <Grid item xs={12} sm={12} md={4}>
+            <TSNSelectField
+              items={petType}
+              name="species"
+              label="Type"
               sx={{ mb: 2 }}
               required
             />
@@ -108,11 +121,31 @@ const PetModal = ({ open, setOpen }: TProps) => {
               required
             />
           </Grid>
-          <Grid item xs={12} sm={12} md={4}>
+          {/*  <Grid item xs={12} sm={12} md={4}>
             <TSNInput
               name="size"
               label="Size"
               fullWidth={true}
+              sx={{ mb: 2 }}
+              required
+            />
+          </Grid> */}
+
+          <Grid item xs={12} sm={12} md={4}>
+            <TSNSelectField
+              items={petSize}
+              name="size"
+              label="Size"
+              sx={{ mb: 2 }}
+              required
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={4}>
+            <TSNSelectField
+              items={Gender}
+              name="gender"
+              label="Gender"
               sx={{ mb: 2 }}
               required
             />

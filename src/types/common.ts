@@ -28,3 +28,7 @@ export type IGenericErrorResponse = {
   message: string;
   errorMessages: IGenericErrorResponse[];
 };
+
+export const Gender = ["Male", "Female"];
+export const petType = ["Dog", "Cat"];
+export const petSize = ["Small", "Medium", "Large"];

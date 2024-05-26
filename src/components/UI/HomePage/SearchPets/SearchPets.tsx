@@ -23,7 +23,7 @@ import { useState, useMemo, useEffect } from "react";
 
 const filters = [
   { label: "Size", options: ["Small", "Medium", "Large"], key: "size" },
-  { label: "Gender", options: ["male", "female"], key: "gender" },
+  { label: "Gender", options: ["Male", "Female"], key: "gender" },
   { label: "Type", options: ["Dog", "Cat"], key: "species" },
 ];
 
