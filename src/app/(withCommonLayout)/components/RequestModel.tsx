@@ -4,7 +4,7 @@ import TSNInput from "@/components/Forms/TSNInput";
 import TSNModal from "@/components/Shared/TSNModal/TSNModal";
 // import { registerUser } from "@/services/actions/registerUser";
 import { uploadImage } from "@/utils/uploadImage";
-import { Button, Grid } from "@mui/material";
+import { Button, Checkbox, Grid, FormControlLabel } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
@@ -29,9 +29,8 @@ type TUserInfo = {
 };
 
 const RequestModal = ({ open, setOpen, petId }: TProps) => {
-  console.log("pet id coming from request modal", petId);
   const [user, setUser] = useState<TUserInfo | null>();
-  console.log(user);
+  const [agreedTerms, setAgreedTerms] = useState(false);
 
   useEffect(() => {
     const userInfo = getUserInfo();
@@ -43,10 +42,17 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
   const defaultValues = {
     name: user?.name || "",
     email: user?.email || "",
+    petOwnershipExperience: "",
   };
 
   const handleFormSubmit = async (values: FieldValues) => {
+    if (!agreedTerms) {
+      toast.error("Please agree to the terms and conditions.");
+      return;
+    }
+
     console.log({ values });
+
     try {
       const requestAdoptionData: any = {
         petId: petId,
@@ -57,17 +63,21 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
 
       console.log({ requestAdoptionData });
 
-      /* const res = await createUser(adminData);
+      /* const res = await create(adminData);
       console.log({ res });
 
       if (res?.data?.id) {
         toast.success("Adoption request submitted Successfully");
         setOpen(false);
-        router.refresh();
+    
       } */
     } catch (err: any) {
       console.error(err.message);
     }
+  };
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAgreedTerms(event.target.checked);
   };
 
   return (
@@ -100,6 +110,19 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
               fullWidth={true}
               name="petOwnershipExperience"
               multiline
+              required
+            />
+          </Grid>
+          <Grid item md={12}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={agreedTerms}
+                  onChange={handleCheckboxChange}
+                  name="agreedTerms"
+                />
+              }
+              label="I agree with the Terms and Conditions"
             />
           </Grid>
         </Grid>
