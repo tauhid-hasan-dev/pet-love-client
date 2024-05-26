@@ -8,6 +8,8 @@ import {
   Grid,
   CircularProgress,
   Typography,
+  Button,
+  Stack,
 } from "@mui/material";
 import Image from "next/image"; // Import the Image component from next/image
 import React from "react";
@@ -22,8 +24,8 @@ const PetDetails = ({ params }: TParams) => {
   const petId = params?.id;
   console.log(petId);
 
-  const { data, isLoading } = useGetPetQuery(petId);
-  console.log(data);
+  const { data: pet, isLoading } = useGetPetQuery(petId);
+  console.log(pet);
 
   if (isLoading) {
     return (
@@ -36,10 +38,22 @@ const PetDetails = ({ params }: TParams) => {
 
   return (
     <Container sx={{ margin: "30px auto" }}>
+      <Typography
+        variant="h5"
+        sx={{
+          width: "100%",
+          my: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Details of {pet.name}
+      </Typography>
       <Grid container spacing={2}>
         <Grid item md={8}>
           <Grid container spacing={2}>
-            {data.photos?.map((pet: any, index: number) => (
+            {pet.photos?.map((pet: any, index: number) => (
               <Grid item key={index} xs={12} md={4}>
                 <Card>
                   <Box
@@ -68,19 +82,40 @@ const PetDetails = ({ params }: TParams) => {
         </Grid>
 
         <Grid item md={4}>
-          <Card>
-            <Box
-              sx={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <h1>This is a card</h1>
-            </Box>
-          </Card>
+          <Stack gap={2}>
+            <Card>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: 200,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Stack gap={2}>
+                  <h1>Considering {pet.name} for adoption?</h1>
+                  <Button fullWidth>Request for Adoption</Button>
+                </Stack>
+              </Box>
+            </Card>
+            <Card>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: 400,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Stack gap={2}>
+                  <h1>Considering {pet.name} for adoption?</h1>
+                  <Button fullWidth>Request for Adoption</Button>
+                </Stack>
+              </Box>
+            </Card>
+          </Stack>
         </Grid>
       </Grid>
     </Container>
