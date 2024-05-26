@@ -81,15 +81,6 @@ const PetModal = ({ open, setOpen }: TProps) => {
               required
             />
           </Grid>
-          {/* <Grid item xs={12} sm={12} md={4}>
-            <TSNInput
-              name="species"
-              label="Type"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-              required
-            />
-          </Grid> */}
 
           <Grid item xs={12} sm={12} md={4}>
             <TSNSelectField
@@ -121,15 +112,6 @@ const PetModal = ({ open, setOpen }: TProps) => {
               required
             />
           </Grid>
-          {/*  <Grid item xs={12} sm={12} md={4}>
-            <TSNInput
-              name="size"
-              label="Size"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-              required
-            />
-          </Grid> */}
 
           <Grid item xs={12} sm={12} md={4}>
             <TSNSelectField
