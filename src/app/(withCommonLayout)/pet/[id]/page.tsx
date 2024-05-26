@@ -2,7 +2,6 @@
 
 import { useGetPetQuery } from "@/redux/api/petApi";
 import { Box, Card, Container, Grid } from "@mui/material";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image"; // Import the Image component from next/image
 import React from "react";
 

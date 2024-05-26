@@ -34,9 +34,9 @@ const PetManagement = () => {
   // const { data, isLoading } = useGetAllPetsQuery({ ...query });
   const { data, isLoading } = useGetAllPetsQuery({ ...query });
   console.log(data);
-  /* const [deleteDoctor] = useDeleteDoctorMutation() */
+
   const pets = data?.pets || []; // Default to empty array if undefined
-  const meta = data?.meta;
+  // const meta = data?.meta;
 
   const handleDelete = async (id: string) => {
     console.log(id);
