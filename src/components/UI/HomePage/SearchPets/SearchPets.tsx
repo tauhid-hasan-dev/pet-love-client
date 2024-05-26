@@ -23,8 +23,8 @@ import { useState, useMemo, useEffect } from "react";
 
 const filters = [
   { label: "Size", options: ["Small", "Medium", "Large"], key: "size" },
-  { label: "Gender", options: ["Male", "Female"], key: "gender" },
-  { label: "Age", options: [1, 2, 3], key: "age" }, // You might want to fetch this dynamically
+  { label: "Gender", options: ["male", "female"], key: "gender" },
+  { label: "Type", options: ["Dog", "Cat"], key: "species" },
 ];
 
 const SearchPets = () => {
@@ -70,6 +70,7 @@ const SearchPets = () => {
 
   const { data, isLoading, isError } = useGetAllPetsQuery(query);
   const pets = data?.pets || [];
+  console.log(pets);
 
   return (
     <Box sx={{ my: 10 }}>
@@ -179,7 +180,7 @@ const SearchPets = () => {
                       {pet.age}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      A {pet.size} size {pet.species},
+                      A {pet.size} size {pet.gender} {pet.species},
                     </Typography>
                     <Typography variant="body2" color="text.secondary" mt={1}>
                       <LocationOnIcon /> {pet.location}
