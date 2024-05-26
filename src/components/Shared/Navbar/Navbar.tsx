@@ -54,7 +54,7 @@ const Navbar = () => {
             About Us
           </Typography>
           {userInfo && (
-            <Typography component={Link} href="/profile">
+            <Typography component={Link} href="/dashboard/profile">
               Profile
             </Typography>
           )}
