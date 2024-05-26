@@ -31,10 +31,6 @@ const Navbar = () => {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        sx={{
-          borderBottom: "1px solid #ddd", // Light gray color
-          width: "100%", // Spanning the full width of the screen
-        }}
       >
         <Typography variant="h4" component={Link} href="/" fontWeight={600}>
           <Stack direction="row" gap={1}>
