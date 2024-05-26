@@ -50,9 +50,12 @@ const RequestModal = ({ open, setOpen, petId }: TProps) => {
     try {
       const requestAdoptionData: any = {
         petId: petId,
-        name: values.name,
-        email: values.email,
+        name: user?.name,
+        email: user?.email,
+        petOwnershipExperience: values.petOwnershipExperience,
       };
+
+      console.log({ requestAdoptionData });
 
       /* const res = await createUser(adminData);
       console.log({ res });
