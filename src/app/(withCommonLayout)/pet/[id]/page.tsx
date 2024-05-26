@@ -105,13 +105,31 @@ const PetDetails = ({ params }: TParams) => {
                   width: "100%",
                   height: 400,
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  p: 5,
                 }}
               >
                 <Stack gap={2}>
-                  <h1>Considering {pet.name} for adoption?</h1>
-                  <Button fullWidth>Request for Adoption</Button>
+                  <Typography variant="h6">
+                    <span style={{ fontWeight: "bold" }}>Name:</span> {pet.name}
+                  </Typography>
+                  <Typography variant="h6">
+                    <span style={{ fontWeight: "bold" }}>Type:</span>{" "}
+                    {pet.species}
+                  </Typography>
+                  <Typography variant="h6">
+                    <span style={{ fontWeight: "bold" }}>Age:</span> {pet.age}
+                  </Typography>
+                  <Typography variant="h6">
+                    <span style={{ fontWeight: "bold" }}>Size:</span> {pet.size}
+                  </Typography>
+                  <Typography variant="h6">
+                    <span style={{ fontWeight: "bold" }}>Health Status:</span>{" "}
+                    {pet.medicalHistory}
+                  </Typography>
+                  <Typography variant="h6">
+                    <span style={{ fontWeight: "bold" }}>Location:</span>{" "}
+                    {pet.location}
+                  </Typography>
                 </Stack>
               </Box>
             </Card>
