@@ -14,6 +14,8 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import RequestModal from "../../components/RequestModel";
+import { isLoggedIn } from "@/services/auth.services";
+import { useRouter } from "next/navigation";
 
 type TParams = {
   params: {
@@ -28,6 +30,11 @@ const PetDetails = ({ params }: TParams) => {
 
   const { data: pet, isLoading } = useGetPetQuery(petId);
   console.log(pet);
+
+  const router = useRouter();
+  if (!isLoggedIn()) {
+    return router.push("/login");
+  }
 
   if (isLoading) {
     return (
