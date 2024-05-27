@@ -13,6 +13,28 @@ const userApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.user],
     }),
 
+    getMYProfile: build.query({
+      query: () => {
+        return {
+          url: "/profile",
+          method: "GET",
+        };
+      },
+      providesTags: [tagTypes.user],
+    }),
+
+    updateMYProfile: build.mutation({
+      query: (data) => {
+        return {
+          url: "/profile",
+          method: "PUT",
+          data,
+          contentType: "application/json",
+        };
+      },
+      invalidatesTags: [tagTypes.user],
+    }),
+
     updateUserStatus: build.mutation({
       query: (data) => {
         console.log(data);
@@ -72,4 +94,6 @@ export const {
   useGetAllUserQuery,
   useUpdateUserStatusMutation,
   useUpdateUserRoleMutation,
+  useGetMYProfileQuery,
+  useUpdateMYProfileMutation,
 } = userApi;
