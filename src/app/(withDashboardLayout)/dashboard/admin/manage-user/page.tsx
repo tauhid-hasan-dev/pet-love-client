@@ -3,7 +3,10 @@
 import { Box, Button, IconButton, Stack, TextField } from "@mui/material";
 import UserModal from "./components/UserModal";
 import { useState } from "react";
-import { useGetAllUserQuery } from "@/redux/api/userApi";
+import {
+  useGetAllUserQuery,
+  useUpdateUserStatusMutation,
+} from "@/redux/api/userApi";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -12,6 +15,8 @@ const ManageUsers = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { data, isLoading } = useGetAllUserQuery({});
   console.log({ data });
+
+  const [updateUserStatus] = useUpdateUserStatusMutation();
 
   const handleDelete = async (id: string) => {
     console.log(id);
@@ -23,6 +28,18 @@ const ManageUsers = () => {
     } catch (err: any) {
       console.error(err.message);
     } */
+  };
+
+  const handleUpdateStatus = async (id: string, newStatus: string) => {
+    try {
+      const updatedUser = await updateUserStatus({
+        id: id,
+        body: { status: newStatus }, // Use newStatus parameter here
+      });
+      console.log("User status updated:", updatedUser);
+    } catch (error) {
+      console.error("Error updating user status:", error);
+    }
   };
 
   // console.log(data);
@@ -60,9 +77,14 @@ const ManageUsers = () => {
       headerName: "Update Status",
       flex: 0.6,
       renderCell: ({ row }) => {
+        const newStatus = row.status === "ACTIVE" ? "BLOCKED" : "ACTIVE";
         return (
-          <Button variant="outlined" size="small">
-            Update
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => handleUpdateStatus(row.id, newStatus)} // Pass new status here
+          >
+            {row.status === "ACTIVE" ? "Block" : "Activate"}{" "}
           </Button>
         );
       },
@@ -107,3 +129,6 @@ const ManageUsers = () => {
 };
 
 export default ManageUsers;
+function updateUserStatus(arg0: { id: string; status: string }) {
+  throw new Error("Function not implemented.");
+}
