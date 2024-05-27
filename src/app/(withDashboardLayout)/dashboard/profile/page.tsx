@@ -13,9 +13,14 @@ import {
   useUpdateMYProfileMutation,
 } from "@/redux/api/userApi";
 import { uploadImage } from "@/utils/uploadImage";
+import ProfileInformation from "./components/ProfileInfo";
+import ProfileUpdateModal from "./components/ProfileUpdateModal";
+import Link from "next/link";
 
 const Profile = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data, isLoading } = useGetMYProfileQuery(undefined);
+  console.log(data);
   const [updateMYProfile, { isLoading: updating }] =
     useUpdateMYProfileMutation();
 
@@ -33,6 +38,11 @@ const Profile = () => {
 
   return (
     <>
+      <ProfileUpdateModal
+        open={isModalOpen}
+        setOpen={setIsModalOpen}
+        id={data?.id}
+      />
       <Container sx={{ mt: 4 }}>
         <Grid container spacing={4}>
           <Grid xs={12} md={4}>
@@ -57,7 +67,7 @@ const Profile = () => {
               ) : (
                 <AutoFileUploader
                   name="file"
-                  label="Choose Your Profile Photo"
+                  label="Change Profile Photo"
                   icon={<CloudUploadIcon />}
                   onFileUpload={fileUploadHandler}
                   variant="text"
@@ -65,17 +75,19 @@ const Profile = () => {
               )}
             </Box>
 
-            {/* <Button
-              fullWidth
-              endIcon={<ModeEditIcon />}
-              onClick={() => setIsModalOpen(true)}
-            >
-              Edit Profile
-            </Button> */}
+            <Link href={"/dashboard/profile/edit-profile"}>
+              <Button
+                fullWidth
+                endIcon={<ModeEditIcon />}
+                /*  onClick={() => setIsModalOpen(true)} */
+              >
+                Edit Profile
+              </Button>
+            </Link>
           </Grid>
-          {/* <Grid xs={12} md={8}>
-            <DoctorInformation data={data} />
-          </Grid> */}
+          <Grid xs={12} md={8}>
+            <ProfileInformation data={data} />
+          </Grid>
         </Grid>
       </Container>
     </>

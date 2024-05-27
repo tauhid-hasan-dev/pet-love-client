@@ -9,42 +9,39 @@ import React from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useCreateUserMutation } from "@/redux/api/userApi";
-import Link from "next/link";
+import {
+  useGetMYProfileQuery,
+  useUpdateMYProfileMutation,
+} from "@/redux/api/userApi";
 
-const CreateAdmin = () => {
+const EditProfile = () => {
   const router = useRouter();
-  const [createUser] = useCreateUserMutation();
+  const { data, refetch } = useGetMYProfileQuery(undefined);
+  /* console.log(data); */
+
+  const [updateMYProfile, { isLoading: updating }] =
+    useUpdateMYProfileMutation();
+
   const handleFormSubmit = async (values: FieldValues) => {
     console.log({ values });
     try {
-      // Create a plain JavaScript object to hold the data
-      const adminData: any = {
+      const res = await updateMYProfile({
         name: values.name,
         email: values.email,
-        password: values.password,
-        role: "ADMIN",
-      };
-
-      // If file is present, upload it and add its URL to adminData
-      if (values.file) {
-        const profilePhoto = await uploadImage(values.file);
-        console.log({ profilePhoto });
-        adminData.profilePhoto = profilePhoto;
-      }
-
-      console.log({ adminData });
-
-      // Pass only the plain JavaScript object to registerUser function
-      const res = await createUser(adminData);
-      console.log({ res });
+      });
+      console.log(res);
       if (res?.data?.id) {
-        toast.success("Admin Created Successfully");
-        router.push("/dashboard/admin/manage-user");
+        toast.success("Profile info updated successfully");
+        router.push("/dashboard/profile");
       }
-    } catch (err: any) {
-      console.error(err.message);
+    } catch (error) {
+      console.log(error);
     }
+  };
+
+  const defaultValues = {
+    name: data?.name || "",
+    email: data?.email || "",
   };
 
   return (
@@ -65,10 +62,10 @@ const CreateAdmin = () => {
     >
       <Stack alignItems="center" justifyContent="center">
         <Typography variant="h5" fontWeight={600} sx={{ mb: 2, mt: 1 }}>
-          Create Admin
+          Edit Profile
         </Typography>
       </Stack>
-      <TSNForm onSubmit={handleFormSubmit}>
+      <TSNForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
         <Grid container direction="column" spacing={2} mb={1}>
           <Grid item md={12}>
             <TSNInput label="Name" type="name" fullWidth={true} name="name" />
@@ -81,24 +78,13 @@ const CreateAdmin = () => {
               name="email"
             />
           </Grid>
-          <Grid item md={6}>
-            <TSNInput
-              label="Password"
-              type="password"
-              fullWidth={true}
-              name="password"
-            />
-          </Grid>
-          <Grid item md={6}>
-            <TSNFileUploader name="file" label="Upload Profile Image" />
-          </Grid>
         </Grid>
         <Button sx={{ mt: 1 }} type="submit">
-          Submit
+          Save
         </Button>
       </TSNForm>
     </Box>
   );
 };
 
-export default CreateAdmin;
+export default EditProfile;
