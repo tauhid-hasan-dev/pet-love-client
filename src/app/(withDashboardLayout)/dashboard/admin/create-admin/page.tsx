@@ -90,7 +90,7 @@ const ChangePassword = () => {
             />
           </Grid>
           <Grid item md={6}>
-            <TSNFileUploader name="file" label="Upload File" />
+            <TSNFileUploader name="file" label="Upload Profile Image" />
           </Grid>
         </Grid>
         <Button sx={{ mt: 1 }} type="submit">
