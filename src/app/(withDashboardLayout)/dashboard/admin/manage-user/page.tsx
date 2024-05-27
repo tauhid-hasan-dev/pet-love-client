@@ -10,6 +10,7 @@ import {
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ManageUsers = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -122,7 +123,16 @@ const ManageUsers = () => {
           <DataGrid rows={data} columns={columns} hideFooter={true} />
         </Box>
       ) : (
-        <h1>Loading.....</h1>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "calc(100vh - 100px)",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       )}
     </Box>
   );
