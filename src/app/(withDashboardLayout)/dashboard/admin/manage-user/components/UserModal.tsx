@@ -27,6 +27,7 @@ const UserModal = ({ open, setOpen }: TProps) => {
         name: values.name,
         email: values.email,
         password: values.password,
+        role: "ADMIN",
       };
 
       // If file is present, upload it and add its URL to adminData
