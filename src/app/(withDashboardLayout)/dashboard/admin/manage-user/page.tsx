@@ -104,7 +104,7 @@ const ManageUsers = () => {
               onClick={() => handleDelete(row.id)}
               aria-label="delete"
             >
-              <DeleteIcon sx={{ color: "red" }} />
+              <DeleteIcon sx={{ color: "#FF7F7F" }} />
             </IconButton>
           </>
         );

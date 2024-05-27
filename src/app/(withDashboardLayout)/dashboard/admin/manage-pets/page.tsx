@@ -16,6 +16,7 @@ import PetModal from "./components/PetModal";
 import { useGetAllPetsQuery } from "@/redux/api/petApi";
 import { useDebounced } from "@/redux/hooks";
 import CircularProgress from "@mui/material/CircularProgress";
+import Image from "next/image";
 
 const PetManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -53,6 +54,18 @@ const PetManagement = () => {
   };
 
   const columns: GridColDef[] = [
+    {
+      field: "icon",
+      headerName: "Photo",
+      flex: 0.2,
+      renderCell: ({ row }) => {
+        return (
+          <Box>
+            <Image src={row.photos[0]} width={30} height={30} alt="icon" />
+          </Box>
+        );
+      },
+    },
     { field: "name", headerName: "Name", flex: 0.7 },
     { field: "species", headerName: "Type", flex: 0.6 },
     { field: "breed", headerName: "Breed", flex: 0.7 },
@@ -69,14 +82,14 @@ const PetManagement = () => {
           <Box>
             <Link href={`/dashboard/admin/manage-pets/edit/${row.id}`}>
               <IconButton aria-label="edit">
-                <EditIcon />
+                <EditIcon sx={{ color: "#be95df" }} />
               </IconButton>
             </Link>
             <IconButton
               onClick={() => handleDelete(row.id)}
               aria-label="delete"
             >
-              <DeleteIcon sx={{ color: "red" }} />
+              <DeleteIcon sx={{ color: "#FF7F7F" }} />
             </IconButton>
           </Box>
         );
