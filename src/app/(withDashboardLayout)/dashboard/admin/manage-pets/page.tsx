@@ -57,7 +57,7 @@ const PetManagement = () => {
     {
       field: "icon",
       headerName: "Photo",
-      flex: 0.2,
+      flex: 0.3,
       renderCell: ({ row }) => {
         return (
           <Box>
