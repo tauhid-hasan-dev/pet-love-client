@@ -5,12 +5,14 @@ import UserModal from "./components/UserModal";
 import { useState } from "react";
 import {
   useGetAllUserQuery,
+  useUpdateUserRoleMutation,
   useUpdateUserStatusMutation,
 } from "@/redux/api/userApi";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CircularProgress from "@mui/material/CircularProgress";
+import Link from "next/link";
 
 const ManageUsers = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -18,24 +20,17 @@ const ManageUsers = () => {
   console.log({ data });
 
   const [updateUserStatus] = useUpdateUserStatusMutation();
+  const [updateUserRole] = useUpdateUserRoleMutation();
 
   const handleDelete = async (id: string) => {
     console.log(id);
-    /* try {
-      const res = await deleteSpecialty(id).unwrap();
-      if (res?.id) {
-        toast.success("Specialty deleted successfully!!!");
-      }
-    } catch (err: any) {
-      console.error(err.message);
-    } */
   };
 
   const handleUpdateStatus = async (id: string, newStatus: string) => {
     try {
       const updatedUser = await updateUserStatus({
         id: id,
-        body: { status: newStatus }, // Use newStatus parameter here
+        body: { status: newStatus },
       });
       console.log("User status updated:", updatedUser);
     } catch (error) {
@@ -43,19 +38,28 @@ const ManageUsers = () => {
     }
   };
 
-  // console.log(data);
+  const handleUpdateRole = async (id: string, newRole: string) => {
+    try {
+      const updatedUser = await updateUserRole({
+        id: id,
+        body: { role: newRole },
+      });
+      console.log("User role updated:", updatedUser);
+    } catch (error) {
+      console.error("Error updating user role:", error);
+    }
+  };
+
   const columns: GridColDef[] = [
     {
       field: "icon",
       headerName: "Photo",
       flex: 0.3,
-      renderCell: ({ row }) => {
-        return (
-          <Box>
-            <Image src={row.profilePhoto} width={30} height={30} alt="icon" />
-          </Box>
-        );
-      },
+      renderCell: ({ row }) => (
+        <Box>
+          <Image src={row.profilePhoto} width={30} height={30} alt="icon" />
+        </Box>
+      ),
     },
     { field: "name", headerName: "Name", flex: 0.6 },
     { field: "email", headerName: "Email", flex: 1 },
@@ -65,9 +69,14 @@ const ManageUsers = () => {
       headerName: "Assign Role",
       flex: 0.7,
       renderCell: ({ row }) => {
+        const newRole = row.role === "ADMIN" ? "USER" : "ADMIN";
         return (
-          <Button variant="outlined" size="small">
-            Assign
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => handleUpdateRole(row.id, newRole)}
+          >
+            {row.role === "ADMIN" ? "Make User" : "Make Admin"}
           </Button>
         );
       },
@@ -83,40 +92,35 @@ const ManageUsers = () => {
           <Button
             variant="outlined"
             size="small"
-            onClick={() => handleUpdateStatus(row.id, newStatus)} // Pass new status here
+            onClick={() => handleUpdateStatus(row.id, newStatus)}
           >
-            {row.status === "ACTIVE" ? "Block" : "Activate"}{" "}
+            {row.status === "ACTIVE" ? "Block" : "Activate"}
           </Button>
         );
       },
     },
-
     {
       field: "action",
       headerName: "Action",
       flex: 0.4,
       headerAlign: "center",
       align: "center",
-      renderCell: ({ row }) => {
-        return (
-          <>
-            <IconButton
-              onClick={() => handleDelete(row.id)}
-              aria-label="delete"
-            >
-              <DeleteIcon sx={{ color: "#FF7F7F" }} />
-            </IconButton>
-          </>
-        );
-      },
+      renderCell: ({ row }) => (
+        <IconButton onClick={() => handleDelete(row.id)} aria-label="delete">
+          <DeleteIcon sx={{ color: "#FF7F7F" }} />
+        </IconButton>
+      ),
     },
   ];
+
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between">
-        <Button onClick={() => setIsModalOpen(true)}>Create Admin</Button>
-        <UserModal open={isModalOpen} setOpen={setIsModalOpen}></UserModal>
-        <TextField size="small" placeholder="Search users"></TextField>
+        <Link href="/dashboard/admin/create-admin">
+          <Button>Create Admin</Button>
+        </Link>
+        {/* <UserModal open={isModalOpen} setOpen={setIsModalOpen} /> */}
+        <TextField size="small" placeholder="Search users" />
       </Stack>
       {!isLoading ? (
         <Box my={2}>
@@ -139,6 +143,3 @@ const ManageUsers = () => {
 };
 
 export default ManageUsers;
-function updateUserStatus(arg0: { id: string; status: string }) {
-  throw new Error("Function not implemented.");
-}
