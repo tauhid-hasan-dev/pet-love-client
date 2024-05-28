@@ -1,8 +1,9 @@
+"use client";
+
 import TSNFileUploader from "@/components/Forms/TSNFileUploader";
 import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
 import TSNModal from "@/components/Shared/TSNModal/TSNModal";
-// import { registerUser } from "@/services/actions/registerUser";
 import { uploadImage } from "@/utils/uploadImage";
 import { Button, Grid } from "@mui/material";
 import React from "react";

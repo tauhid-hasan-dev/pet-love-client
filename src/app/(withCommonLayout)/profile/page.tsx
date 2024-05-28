@@ -12,9 +12,7 @@ import {
   Stack,
 } from "@mui/material";
 import Image from "next/image";
-import React, { useState } from "react";
-import { isLoggedIn } from "@/services/auth.services";
-import { useRouter } from "next/navigation";
+import React from "react";
 
 type TParams = {
   params: {
@@ -23,17 +21,9 @@ type TParams = {
 };
 
 const PetDetails = ({ params }: TParams) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const petId = params?.id;
-  console.log(petId);
 
   const { data: pet, isLoading } = useGetPetQuery(petId);
-  console.log(pet);
-
-  const router = useRouter();
-  if (!isLoggedIn()) {
-    return router.push("/login");
-  }
 
   if (isLoading) {
     return (
