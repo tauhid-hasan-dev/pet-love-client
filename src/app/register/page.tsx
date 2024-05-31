@@ -24,11 +24,17 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import HomeIcon from "@mui/icons-material/Home";
 
-export const validationSchema = z.object({
-  name: z.string().min(1, "Please enter your name!"),
-  email: z.string().email("Please enter a valid email address!"),
-  password: z.string().min(6, "Must be at least 6 characters"),
-});
+export const validationSchema = z
+  .object({
+    name: z.string().min(1, "Please enter your name!"),
+    email: z.string().email("Please enter a valid email address!"),
+    password: z.string().min(6, "Must be at least 6 characters"),
+    confirmPassword: z.string().min(6, "Must be at least 6 characters"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"], // path of the error message
+  });
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -120,6 +126,7 @@ const RegisterPage = () => {
                 name: "",
                 email: "",
                 password: "",
+                confirmPassword: "",
               }}
             >
               <Grid container direction="column" spacing={2} my={1}>
@@ -131,7 +138,7 @@ const RegisterPage = () => {
                     name="name"
                   />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item md={12}>
                   <TSNInput
                     label="Email"
                     type="email"
@@ -139,12 +146,20 @@ const RegisterPage = () => {
                     name="email"
                   />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item md={12}>
                   <TSNInput
                     label="Password"
                     type="password"
                     fullWidth={true}
                     name="password"
+                  />
+                </Grid>
+                <Grid item md={12}>
+                  <TSNInput
+                    label="Confirm Password"
+                    type="password"
+                    fullWidth={true}
+                    name="confirmPassword"
                   />
                 </Grid>
               </Grid>
