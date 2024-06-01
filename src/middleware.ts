@@ -1,27 +1,35 @@
+import { jwtDecode } from "jwt-decode";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { cookies } from "next/headers";
-import { jwtDecode } from "jwt-decode";
 
 type Role = keyof typeof roleBasedPrivateRoutes;
 
+const AuthRoutes = ["/login", "/register"];
 const commonPrivateRoutes = ["/dashboard", "/dashboard/change-password"];
 const roleBasedPrivateRoutes = {
-  ADMIN: [/^\/dashboard\/admin/],
   USER: [/^\/dashboard\/user/],
+  ADMIN: [/^\/dashboard\/admin/],
 };
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  console.log("request url", request.nextUrl);
   const { pathname } = request.nextUrl;
+
   const accessToken = cookies().get("accessToken")?.value;
 
   if (!accessToken) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    if (AuthRoutes.includes(pathname)) {
+      return NextResponse.next();
+    } else {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
   }
 
-  if (accessToken && commonPrivateRoutes.includes(pathname)) {
+  if (
+    accessToken &&
+    (commonPrivateRoutes.includes(pathname) ||
+      commonPrivateRoutes.some((route) => pathname.startsWith(route)))
+  ) {
     return NextResponse.next();
   }
 
@@ -33,13 +41,9 @@ export function middleware(request: NextRequest) {
 
   const role = decodedData?.role;
 
-  /* if (role === "ADMIN" && pathname.startsWith("/dashboard/admin")) {
-    return NextResponse.next();
-  }
-
-  if (role === "USER" && pathname.startsWith("/dashboard/user")) {
-    return NextResponse.next();
-  } */
+  // if (role === 'ADMIN' && pathname.startsWith('/dashboard/admin')) {
+  //    return NextResponse.next();
+  // }
 
   if (role && roleBasedPrivateRoutes[role as Role]) {
     const routes = roleBasedPrivateRoutes[role as Role];
@@ -48,11 +52,9 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  console.log(accessToken, "=====================================");
   return NextResponse.redirect(new URL("/", request.url));
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/dashboard/:page*",
+  matcher: ["/login", "/register", "/dashboard/:page*"],
 };
