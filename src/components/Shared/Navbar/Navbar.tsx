@@ -8,8 +8,18 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 
+interface UserInfo {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  iat: number;
+  exp: number;
+}
+
 const Navbar = () => {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  console.log(userInfo);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -57,6 +67,11 @@ const Navbar = () => {
             <Typography component={Link} href="/dashboard/profile">
               Profile
             </Typography>
+          )}
+          {userInfo && (
+            <Link href={`/dashboard/${userInfo?.role}`} passHref>
+              <Typography component="a">Dashboard</Typography>
+            </Link>
           )}
         </Stack>
 
