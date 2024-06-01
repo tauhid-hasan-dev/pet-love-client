@@ -76,7 +76,7 @@ const SearchPets = () => {
     <Box sx={{ my: 10 }}>
       <Box sx={{ textAlign: "center" }}>
         <Typography variant="h4" component="h1" fontWeight={700}>
-          Find your new best friend
+          Pets Available for Adoption
         </Typography>
       </Box>
 

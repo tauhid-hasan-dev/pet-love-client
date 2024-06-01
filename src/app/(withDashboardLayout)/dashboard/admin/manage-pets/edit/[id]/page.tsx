@@ -56,7 +56,7 @@ const PetEditPage = ({ params }: TParams) => {
   return (
     <Box>
       <Typography component="h5" variant="h5">
-        Update Doctor Info
+        Update Pet Info
       </Typography>
       {isLoading ? (
         "Loading..."
