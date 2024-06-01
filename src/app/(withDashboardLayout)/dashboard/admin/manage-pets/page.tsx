@@ -13,10 +13,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Link from "next/link";
 import PetModal from "./components/PetModal";
-import { useGetAllPetsQuery } from "@/redux/api/petApi";
+import { useDeletePetMutation, useGetAllPetsQuery } from "@/redux/api/petApi";
 import { useDebounced } from "@/redux/hooks";
 import CircularProgress from "@mui/material/CircularProgress";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const PetManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -35,22 +36,23 @@ const PetManagement = () => {
 
   // const { data, isLoading } = useGetAllPetsQuery({ ...query });
   const { data, isLoading } = useGetAllPetsQuery({ ...query });
+  const [deletePet] = useDeletePetMutation();
   console.log(data);
 
   const pets = data?.pets || []; // Default to empty array if undefined
   // const meta = data?.meta;
 
   const handleDelete = async (id: string) => {
-    console.log(id);
-    /* try {
-      const res = await deleteDoctor(id).unwrap();
+    /* console.log(id); */
+    try {
+      const res = await deletePet(id).unwrap();
       // console.log(res);
       if (res?.id) {
-        toast.success("Doctor deleted successfully!!!");
+        toast.success("Pet deleted successfully!!!");
       }
     } catch (err: any) {
       console.error(err.message);
-    } */
+    }
   };
 
   const columns: GridColDef[] = [
