@@ -1,29 +1,34 @@
 "use client";
-import { Box, Button, IconButton, Stack, TextField } from "@mui/material";
-/* import DoctorModal from "./components/DoctorModal"; */
+import {
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  CircularProgress,
+} from "@mui/material";
 import { useState } from "react";
-/* import {
-  useDeleteDoctorMutation,
-  useGetAllDoctorsQuery,
-} from "@/redux/api/doctorApi"; */
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
-/* import { useDebounced } from "@/redux/hooks"; */
-// import { toast } from "sonner";
 import EditIcon from "@mui/icons-material/Edit";
 import Link from "next/link";
 import PetModal from "./components/PetModal";
 import { useDeletePetMutation, useGetAllPetsQuery } from "@/redux/api/petApi";
 import { useDebounced } from "@/redux/hooks";
-import CircularProgress from "@mui/material/CircularProgress";
 import Image from "next/image";
 import { toast } from "sonner";
 
 const PetManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+  const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
   const query: Record<string, any> = {};
   const [searchTerm, setSearchTerm] = useState<string>("");
-  // console.log(searchTerm);
 
   const debouncedTerm = useDebounced({
     searchQuery: searchTerm,
@@ -34,24 +39,32 @@ const PetManagement = () => {
     query["searchTerm"] = searchTerm;
   }
 
-  // const { data, isLoading } = useGetAllPetsQuery({ ...query });
   const { data, isLoading } = useGetAllPetsQuery({ ...query });
   const [deletePet] = useDeletePetMutation();
   console.log(data);
 
-  const pets = data?.pets || []; // Default to empty array if undefined
-  // const meta = data?.meta;
+  const pets = data?.pets || [];
 
-  const handleDelete = async (id: string) => {
-    /* console.log(id); */
+  const handleOpenDialog = (id: string) => {
+    setSelectedPetId(id);
+    setOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpen(false);
+    setSelectedPetId(null);
+  };
+
+  const handleDelete = async () => {
     try {
-      const res = await deletePet(id).unwrap();
-      // console.log(res);
+      const res = await deletePet(selectedPetId!).unwrap();
       if (res?.id) {
         toast.success("Pet deleted successfully!!!");
       }
     } catch (err: any) {
       console.error(err.message);
+    } finally {
+      handleCloseDialog();
     }
   };
 
@@ -88,7 +101,7 @@ const PetManagement = () => {
               </IconButton>
             </Link>
             <IconButton
-              onClick={() => handleDelete(row.id)}
+              onClick={() => handleOpenDialog(row.id)}
               aria-label="delete"
             >
               <DeleteIcon sx={{ color: "#FF7F7F" }} />
@@ -126,6 +139,21 @@ const PetManagement = () => {
           <CircularProgress />
         </Box>
       )}
+      <Dialog open={open} onClose={handleCloseDialog}>
+        <DialogTitle>{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this pet? This action cannot be
+            undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleDelete} color="error">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
