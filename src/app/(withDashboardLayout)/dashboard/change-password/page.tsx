@@ -77,7 +77,7 @@ const ChangePassword = () => {
             <TSNInput
               name="oldPassword"
               type="password"
-              label="Old Password"
+              label="Current password"
               fullWidth
               sx={{ mb: 2 }}
             />
