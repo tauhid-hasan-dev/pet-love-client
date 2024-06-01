@@ -20,6 +20,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useGetAllPetsQuery } from "@/redux/api/petApi";
 import { useDebounced } from "@/redux/hooks";
 import { useState, useMemo, useEffect } from "react";
+import styles from "./SearchPets.module.css";
 
 const filters = [
   { label: "Size", options: ["Small", "Medium", "Large"], key: "size" },
@@ -152,13 +153,17 @@ const SearchPets = () => {
           <Grid container spacing={4}>
             {pets.map((pet: any) => (
               <Grid item key={pet.id} md={4}>
-                <Card>
+                <Card
+                  className={styles.cardContainer}
+                  sx={{ borderRadius: 4, p: 2 }}
+                >
                   <Box
                     sx={{
                       width: "100%",
                       height: 300,
                       "& img": {
                         width: "100%",
+                        borderRadius: 3,
                         height: "100%",
                         overflow: "hidden",
                         objectFit: "cover",
@@ -173,7 +178,12 @@ const SearchPets = () => {
                     />
                   </Box>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="div"
+                      sx={{ color: "#6504B5" }}
+                    >
                       {pet.name}
                     </Typography>
                     <Typography gutterBottom variant="h5" component="div">
@@ -189,12 +199,11 @@ const SearchPets = () => {
                   <CardActions
                     sx={{
                       justifyContent: "space-between",
-                      px: 2,
                       paddingBottom: "20px",
                     }}
                   >
-                    <Link href={`/pet/${pet.id}`}>
-                      <Button variant="outlined" fullWidth>
+                    <Link href={`/pet/${pet.id}`} style={{ width: "100%" }}>
+                      <Button variant="outlined" style={{ width: "100%" }}>
                         View Details
                       </Button>
                     </Link>
