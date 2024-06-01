@@ -1,22 +1,15 @@
 "use client";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+
+import { useState } from "react";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { userLogin } from "@/services/actions/userLogin";
 import { storeUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
 import { z } from "zod";
-import { useRouter } from "next/navigation";
 import TSNForm from "@/components/Forms/TSNForm";
 import TSNInput from "@/components/Forms/TSNInput";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,20 +21,23 @@ export const validationSchema = z.object({
 });
 
 const LoginPage = () => {
-  // const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (values: FieldValues) => {
     console.log({ values });
     try {
       const res = await userLogin(values);
-      console.log({ res });
+      console.log("Login response:", res);
+
       if (res?.data?.accessToken) {
         toast.success(res?.message);
         storeUserInfo({ accessToken: res?.data?.accessToken });
-        // router.push("/dashboard");
+      } else {
+        setError(res?.message || "Error occurred!");
       }
     } catch (err: any) {
       console.error(err.message);
+      setError("Error occurred!");
     }
   };
 
@@ -103,6 +99,12 @@ const LoginPage = () => {
               </Typography>
             </Box>
           </Stack>
+
+          {error && (
+            <Typography color="error" mt={1}>
+              {error}
+            </Typography>
+          )}
           <Box>
             <TSNForm
               onSubmit={handleLogin}
@@ -130,10 +132,6 @@ const LoginPage = () => {
                   />
                 </Grid>
               </Grid>
-
-              <Typography mb={1} textAlign="end" component="p" fontWeight={300}>
-                Forgot Password?
-              </Typography>
 
               <Button
                 sx={{
