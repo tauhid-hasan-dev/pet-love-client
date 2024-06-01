@@ -5,7 +5,7 @@ import assets from "@/assets";
 
 const Footer = () => {
   return (
-    <Box bgcolor="#6504B5" py={5}>
+    <Box bgcolor="#3C0753" py={5}>
       <Container color="#fff">
         <Stack direction="row" gap={4} justifyContent="center">
           <Typography color="#fff">info@petlove.com</Typography>

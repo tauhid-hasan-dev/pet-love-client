@@ -158,8 +158,6 @@ const ManageUsers = () => {
         <Link href="/dashboard/admin/create-admin">
           <Button>Create Admin</Button>
         </Link>
-        {/* <UserModal open={isModalOpen} setOpen={setIsModalOpen} /> */}
-        <TextField size="small" placeholder="Search users" />
       </Stack>
       {!isLoading ? (
         <Box my={2}>
