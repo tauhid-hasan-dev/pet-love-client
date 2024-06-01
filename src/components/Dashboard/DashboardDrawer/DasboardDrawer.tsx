@@ -13,6 +13,7 @@ import { Avatar, Button, Stack } from "@mui/material";
 import SideBar from "../SideBar/SideBar";
 import { isLoggedIn, removeUser } from "@/services/auth.services";
 import { useRouter } from "next/navigation";
+import { logoutUser } from "@/services/actions/logutUser";
 
 const drawerWidth = 240;
 
@@ -41,8 +42,7 @@ export default function DashboardDrawer({
   };
 
   const handleLogOut = () => {
-    removeUser();
-    router.push("/");
+    logoutUser(router);
   };
 
   return (
