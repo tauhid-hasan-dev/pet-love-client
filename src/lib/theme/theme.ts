@@ -3,7 +3,6 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   palette: {
     primary: {
-      /* main: "#FF204E", */
       main: "#6504B5",
     },
     secondary: {
@@ -19,6 +18,8 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           padding: "8px 24px",
+          background: "linear-gradient(45deg, #8E2DE2 30%, #4A00E0 90%)",
+          color: "#ffffff", // Ensure the text color is readable against the gradient background
         },
       },
     },
