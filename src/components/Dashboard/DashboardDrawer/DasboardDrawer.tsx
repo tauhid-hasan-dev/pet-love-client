@@ -14,6 +14,7 @@ import SideBar from "../SideBar/SideBar";
 import { isLoggedIn, removeUser } from "@/services/auth.services";
 import { useRouter } from "next/navigation";
 import { logoutUser } from "@/services/actions/logutUser";
+import { useGetMYProfileQuery } from "@/redux/api/userApi";
 
 const drawerWidth = 240;
 
@@ -45,6 +46,7 @@ export default function DashboardDrawer({
     logoutUser(router);
   };
 
+  const { data, isLoading } = useGetMYProfileQuery({});
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -84,7 +86,7 @@ export default function DashboardDrawer({
                 component="div"
                 sx={{ color: "rgba(11, 17, 52, 0.6)" }}
               >
-                Hi User
+                Hi, {isLoading ? "Loading..." : data?.name},
               </Typography>
               <Typography
                 variant="h6"
@@ -96,7 +98,7 @@ export default function DashboardDrawer({
               </Typography>
             </Box>
             <Stack direction="row" gap={3}>
-              <Avatar alt="profile" src="https://i.ibb.co/0rNMXrn/user.png" />
+              <Avatar alt={data?.name} src={data?.profilePhoto} />
               <Button variant="outlined" color="error" onClick={handleLogOut}>
                 Logout
               </Button>
