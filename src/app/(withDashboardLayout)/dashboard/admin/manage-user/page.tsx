@@ -1,9 +1,21 @@
 "use client";
 
-import { Box, Button, IconButton, Stack, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import UserModal from "./components/UserModal";
 import { useState } from "react";
 import {
+  useDeleteUserMutation,
   useGetAllUserQuery,
   useUpdateUserRoleMutation,
   useUpdateUserStatusMutation,
@@ -13,17 +25,41 @@ import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CircularProgress from "@mui/material/CircularProgress";
 import Link from "next/link";
+import { toast } from "sonner";
 
 const ManageUsers = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { data, isLoading } = useGetAllUserQuery({});
+  const [deleteUser] = useDeleteUserMutation();
   console.log({ data });
 
   const [updateUserStatus] = useUpdateUserStatusMutation();
   const [updateUserRole] = useUpdateUserRoleMutation();
 
-  const handleDelete = async (id: string) => {
-    console.log(id);
+  const [open, setOpen] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+
+  const handleOpenDialog = (id: any) => {
+    setSelectedUserId(id);
+    setOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpen(false);
+    setSelectedUserId(null);
+  };
+
+  const handleDelete = async () => {
+    try {
+      const res = await deleteUser(selectedUserId).unwrap();
+      // console.log(res);
+      if (res?.id) {
+        toast.success("User deleted successfully!!!");
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    } finally {
+      handleCloseDialog();
+    }
   };
 
   const handleUpdateStatus = async (id: string, newStatus: string) => {
@@ -106,7 +142,10 @@ const ManageUsers = () => {
       headerAlign: "center",
       align: "center",
       renderCell: ({ row }) => (
-        <IconButton onClick={() => handleDelete(row.id)} aria-label="delete">
+        <IconButton
+          onClick={() => handleOpenDialog(row.id)}
+          aria-label="delete"
+        >
           <DeleteIcon sx={{ color: "#FF7F7F" }} />
         </IconButton>
       ),
@@ -138,6 +177,21 @@ const ManageUsers = () => {
           <CircularProgress />
         </Box>
       )}
+      <Dialog open={open} onClose={handleCloseDialog}>
+        <DialogTitle>{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this user? This action cannot be
+            undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleDelete} color="error">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
