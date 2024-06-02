@@ -14,8 +14,15 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import RequestModal from "../../components/RequestModel";
-import { isLoggedIn } from "@/services/auth.services";
-import { useRouter } from "next/navigation";
+import PetsIcon from "@mui/icons-material/Pets";
+import LabelIcon from "@mui/icons-material/Label";
+import MaleIcon from "@mui/icons-material/Male";
+import FemaleIcon from "@mui/icons-material/Female";
+import StraightenIcon from "@mui/icons-material/Straighten";
+import CakeIcon from "@mui/icons-material/Cake";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ScheduleIcon from "@mui/icons-material/Schedule";
+import PsychologyIcon from "@mui/icons-material/Psychology";
 
 type TParams = {
   params: {
@@ -30,11 +37,6 @@ const PetDetails = ({ params }: TParams) => {
 
   const { data: pet, isLoading } = useGetPetQuery(petId);
   console.log(pet);
-
-  const router = useRouter();
-  if (!isLoggedIn()) {
-    return router.push("/login");
-  }
 
   if (isLoading) {
     return (
@@ -125,33 +127,162 @@ const PetDetails = ({ params }: TParams) => {
                 }}
               >
                 <Stack gap={2}>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Name:</span>{" "}
-                    {pet?.name}
-                  </Typography>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Type:</span>{" "}
-                    {pet?.species}
-                  </Typography>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Age:</span> {pet?.age}
-                  </Typography>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Size:</span>{" "}
-                    {pet?.size}
-                  </Typography>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Health Status:</span>{" "}
-                    {pet?.medicalHistory}
-                  </Typography>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: "bold" }}>Location:</span>{" "}
-                    {pet?.location}
-                  </Typography>
+                  <Box display="flex" alignItems="center">
+                    <PetsIcon />
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      marginLeft={1}
+                    >
+                      Name:
+                    </Typography>
+                    <Typography variant="body1" marginLeft={1}>
+                      {pet?.name}
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <LabelIcon />
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      marginLeft={1}
+                    >
+                      Type:
+                    </Typography>
+                    <Typography variant="body1" marginLeft={1}>
+                      {pet?.species}
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    {pet?.gender === "Male" ? <MaleIcon /> : <FemaleIcon />}
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      marginLeft={1}
+                    >
+                      Gender:
+                    </Typography>
+                    <Typography variant="body1" marginLeft={1}>
+                      {pet?.gender}
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <StraightenIcon />
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      marginLeft={1}
+                    >
+                      Size:
+                    </Typography>
+                    <Typography variant="body1" marginLeft={1}>
+                      {pet?.size}
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <CakeIcon />
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      marginLeft={1}
+                    >
+                      Age:
+                    </Typography>
+                    <Typography variant="body1" marginLeft={1}>
+                      {pet?.age}
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <LabelIcon />
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      marginLeft={1}
+                    >
+                      Breed:
+                    </Typography>
+                    <Typography variant="body1" marginLeft={1}>
+                      {pet?.breed}
+                    </Typography>
+                  </Box>
+                  <Box display="flex" alignItems="center">
+                    <LocationOnIcon />
+                    <Typography
+                      variant="body1"
+                      fontWeight="bold"
+                      marginLeft={1}
+                    >
+                      Location:
+                    </Typography>
+                    <Typography variant="body1" marginLeft={1}>
+                      {pet?.location}
+                    </Typography>
+                  </Box>
                 </Stack>
               </Box>
             </Card>
           </Stack>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid
+          item
+          md={5}
+          sx={{
+            my: 2,
+          }}
+        >
+          <Card
+            sx={{
+              p: 4,
+            }}
+          >
+            <Box display="flex" alignItems="center">
+              <Typography
+                sx={{
+                  my: 1,
+                  color: "#6504B5",
+                }}
+              >
+                Why should you adopt?
+              </Typography>
+            </Box>
+            <Box
+              display="flex"
+              alignItems="center"
+              sx={{
+                my: 1,
+              }}
+            >
+              <PsychologyIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Temperament:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {pet?.temperament}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <ScheduleIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Medical History:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {pet?.medicalHistory}
+              </Typography>
+            </Box>
+          </Card>
+        </Grid>
+        <Grid
+          item
+          md={7}
+          sx={{
+            my: 2,
+          }}
+        >
+          <Card>
+            <h1>This</h1>
+          </Card>
         </Grid>
       </Grid>
     </Container>
