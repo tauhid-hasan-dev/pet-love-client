@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  useGetAllAdoptedPetsQuery,
-  useGetAllAdoptionRequestsQuery,
-  useGetPendingAdoptionRequestsQuery,
-} from "@/redux/api/adoptionRequestApi";
+import { useGetAllAdoptedPetsQuery } from "@/redux/api/adoptionRequestApi";
 import { getUserInfo } from "@/services/auth.services";
 import React, { useEffect, useState } from "react";
 
