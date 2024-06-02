@@ -9,8 +9,15 @@ import {
   DialogTitle,
   Typography,
 } from "@mui/material";
-
 import { useGetPetQuery } from "@/redux/api/petApi";
+import PetsIcon from "@mui/icons-material/Pets";
+import LabelIcon from "@mui/icons-material/Label";
+import MaleIcon from "@mui/icons-material/Male";
+import FemaleIcon from "@mui/icons-material/Female";
+import StraightenIcon from "@mui/icons-material/Straighten";
+import CakeIcon from "@mui/icons-material/Cake";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import DescriptionIcon from "@mui/icons-material/Description";
 
 type PetDetailsDialogProps = {
   petId: string | null;
@@ -25,24 +32,86 @@ const PetDetailsDialog = ({ petId, open, onClose }: PetDetailsDialogProps) => {
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>See requested pet details for adoption</DialogTitle>
+      <DialogTitle>See requested pet details</DialogTitle>
       <DialogContent>
         {isPetLoading ? (
           <CircularProgress />
         ) : petData ? (
-          <DialogContentText>
-            <Typography variant="body1">Name: {petData.name}</Typography>
-            <Typography variant="body1">Type: {petData.species}</Typography>
-            <Typography variant="body1">Gender: {petData.gender}</Typography>
-            <Typography variant="body1">Size: {petData.size}</Typography>
-            <Typography variant="body1">Age: {petData.age}</Typography>
-            <Typography variant="body1">Breed: {petData.breed}</Typography>
-            <Typography variant="body1">
-              Location: {petData.location}
-            </Typography>
-            <Typography variant="body1">
-              Description: {petData.description}
-            </Typography>
+          <DialogContentText
+            sx={{ backgroundColor: "#F1EAFF", p: 1, borderRadius: 2 }}
+          >
+            <Box display="flex" alignItems="center">
+              <PetsIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Name:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {petData.name}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <LabelIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Type:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {petData.species}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              {petData.gender === "Male" ? <MaleIcon /> : <FemaleIcon />}
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Gender:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {petData.gender}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <StraightenIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Size:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {petData.size}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <CakeIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Age:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {petData.age}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <LabelIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Breed:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {petData.breed}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <LocationOnIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Location:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {petData.location}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <DescriptionIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Description:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {petData.description}
+              </Typography>
+            </Box>
           </DialogContentText>
         ) : (
           <Typography variant="body1">No pet data available.</Typography>
