@@ -35,10 +35,10 @@ type TParams = {
 const PetDetails = ({ params }: TParams) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const petId = params?.id;
-  console.log(petId);
+  // console.log(petId);
 
   const { data: pet, isLoading } = useGetPetQuery(petId);
-  console.log(pet);
+  // console.log(pet);
 
   if (isLoading) {
     return (
