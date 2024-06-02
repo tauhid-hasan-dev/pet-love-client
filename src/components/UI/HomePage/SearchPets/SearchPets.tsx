@@ -152,7 +152,7 @@ const SearchPets = () => {
         ) : pets.length > 0 ? (
           <Grid container spacing={4}>
             {pets.map((pet: any) => (
-              <Grid item key={pet.id} md={4}>
+              <Grid item key={pet.id} md={4} >
                 <Card
                   className={styles.cardContainer}
                   sx={{ borderRadius: 4, p: 2 }}
@@ -173,8 +173,8 @@ const SearchPets = () => {
                     <Image
                       src={pet?.photos[0]}
                       alt="pet"
-                      width={500}
-                      height={80}
+                      width={300}
+                      height={30}
                     />
                   </Box>
                   <CardContent>

@@ -4,6 +4,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import PetsIcon from "@mui/icons-material/Pets";
+import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 
 import { USER_ROLE } from "@/app/constants/role";
 
@@ -49,6 +50,16 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
         title: "Dashboard",
         path: `${role}`,
         icon: DashboardIcon,
+      });
+      roleMenus.push({
+        title: "Adoption Requests",
+        path: `${role}/adoption-requests`,
+        icon: ForwardToInboxIcon,
+      });
+      roleMenus.push({
+        title: "Adopted Pets",
+        path: `${role}/adopted-pets`,
+        icon: PetsIcon,
       });
       break;
     default:

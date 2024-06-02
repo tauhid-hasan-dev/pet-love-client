@@ -29,7 +29,7 @@ const HeroSection = () => {
           new start.
         </Typography>
         <Box sx={{ display: "flex", gap: 2 }}>
-          <Button>Find</Button>
+          {/* <Button>Find</Button> */}
           <Button variant="outlined">Contact us</Button>
         </Box>
       </Box>
