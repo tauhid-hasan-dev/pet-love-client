@@ -1,28 +1,72 @@
 import React from "react";
-import { Container, Typography, Box, Avatar, Grid, Paper } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Box,
+  Avatar,
+  Grid,
+  Paper,
+  ListItem,
+  ListItemText,
+  List,
+} from "@mui/material";
 
 const teamMembers = [
-  { name: "John Doe", role: "CEO", imageUrl: "/john.jpg" },
-  { name: "Jane Smith", role: "CTO", imageUrl: "/jane.jpg" },
-  { name: "Alice Johnson", role: "COO", imageUrl: "/alice.jpg" },
+  {
+    name: "Asif Abdullah",
+    role: "CEO",
+    imageUrl: "https://i.ibb.co/5MzQd0n/person1.jpg",
+  },
+  {
+    name: "Abu Ubayda",
+    role: "CTO",
+    imageUrl: "https://i.ibb.co/ZfZKBHP/person2.jpg",
+  },
+  {
+    name: "Muhammad Deif",
+    role: "COO",
+    imageUrl: "https://i.ibb.co/DWzLwFS/person3.jpg",
+  },
 ];
 
 const About = () => {
   return (
     <Container>
       <Paper elevation={3} sx={{ padding: "24px", marginTop: "24px" }}>
-        <Box my={4} textAlign="center">
-          <Typography variant="h1" gutterBottom>
+        <Box my={4} textAlign="start">
+          <Typography variant="h5" gutterBottom>
             About Us
           </Typography>
           <Typography variant="body1" paragraph>
-            Welcome to our company. We are dedicated to delivering the best
-            service possible. Our team consists of experienced professionals who
-            are passionate about what they do.
+            Pet Love is an online, searchable database of animals who need
+            homes. It is also a directory of nearly 11,000 animal shelters and
+            adoption organizations across the U.S., Canada, and Mexico.
+            Organizations maintain their own home pages and available-pet
+            databases.
           </Typography>
+          <Box
+            mt={4}
+            p={3}
+            sx={{ backgroundColor: "#f5f5f5", borderRadius: "8px" }}
+          >
+            <Typography variant="h5" gutterBottom>
+              OUR MISSION
+            </Typography>
+            <List>
+              <ListItem>
+                <ListItemText primary="• Increase public awareness of the availability of high-quality adoptable pets" />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="• Increase the overall effectiveness of pet adoption programs across North America." />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="• Elevate the status of pets to that of family member" />
+              </ListItem>
+            </List>
+          </Box>
         </Box>
         <Box textAlign="center" my={4}>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant="h5" gutterBottom my={4}>
             Our Team
           </Typography>
           <Grid container spacing={4} justifyContent="center">
@@ -34,7 +78,7 @@ const About = () => {
                     alt={member.name}
                     sx={{ width: 120, height: 120, mb: 2, boxShadow: 3 }}
                   />
-                  <Typography variant="h3">{member.name}</Typography>
+                  <Typography variant="h5">{member.name}</Typography>
                   <Typography variant="subtitle1" color="textSecondary">
                     {member.role}
                   </Typography>
