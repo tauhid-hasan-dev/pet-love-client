@@ -305,7 +305,10 @@ const SearchPets = () => {
                     }}
                   >
                     <Link href={`/pet/${pet.id}`} style={{ width: "100%" }}>
-                      <Button variant="outlined" style={{ width: "100%" }}>
+                      <Button
+                        variant="outlined"
+                        sx={{ width: "100%", borderRadius: "15px" }}
+                      >
                         View Details
                       </Button>
                     </Link>
