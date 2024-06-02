@@ -17,7 +17,7 @@ const AdoptedPets = () => {
   const [user, setUser] = useState<TUserInfo | null>();
 
   useEffect(() => {
-    const userInfo = getUserInfo();
+    const userInfo: TUserInfo = getUserInfo();
     if (userInfo) {
       setUser(userInfo);
     }

@@ -25,6 +25,7 @@ const AdoptionRequests = () => {
 
   const { data } = useGetPendingAdoptionRequestsQuery(user?.id);
   console.log({ data });
+
   return (
     <div>
       <h1>My all adoption requests list</h1>
