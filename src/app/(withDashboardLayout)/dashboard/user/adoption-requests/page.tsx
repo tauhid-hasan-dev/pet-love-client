@@ -1,7 +1,6 @@
 "use client";
 
 import { useGetPendingAdoptionRequestsQuery } from "@/redux/api/adoptionRequestApi";
-
 import { getUserInfo } from "@/services/auth.services";
 import {
   Box,
@@ -63,7 +62,6 @@ const AdoptionRequests = () => {
   const columns: GridColDef[] = [
     { field: "userName", headerName: "User Name", flex: 1 },
     { field: "userEmail", headerName: "User Email", flex: 1 },
-
     { field: "petId", headerName: "Pet ID", flex: 1 },
     {
       field: "action",
@@ -81,7 +79,26 @@ const AdoptionRequests = () => {
         );
       },
     },
-    { field: "status", headerName: "Request Status", flex: 0.5 },
+    {
+      field: "status",
+      headerName: "Request Status",
+      flex: 0.5,
+      renderCell: ({ value }) => (
+        <Typography
+          sx={{
+            fontWeight: "bold",
+            color:
+              value === "REJECTED"
+                ? "red"
+                : value === "PENDING"
+                ? "#6504B5"
+                : "inherit",
+          }}
+        >
+          {value}
+        </Typography>
+      ),
+    },
   ];
 
   return (
