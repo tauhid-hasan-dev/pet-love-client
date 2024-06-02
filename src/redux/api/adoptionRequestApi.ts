@@ -15,7 +15,7 @@ const petApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.adoptionrequest],
     }),
-    /* getAllAdoptionRequests: build.query({
+    getAllAdoptionRequests: build.query({
       query: () => {
         return {
           url: "/adoption-requests",
@@ -23,7 +23,7 @@ const petApi = baseApi.injectEndpoints({
         };
       },
       providesTags: [tagTypes.adoptionrequest],
-    }), */
+    }),
     getPendingAdoptionRequests: build.query({
       query: (id) => {
         return {
@@ -48,6 +48,6 @@ const petApi = baseApi.injectEndpoints({
 export const {
   useCreateAdoptionRequestMutation,
   useGetAllAdoptedPetsQuery,
- /*  useGetAllAdoptionRequestsQuery, */
+  useGetAllAdoptionRequestsQuery,
   useGetPendingAdoptionRequestsQuery,
 } = petApi;
