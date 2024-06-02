@@ -57,20 +57,53 @@ const Navbar = () => {
         </Typography>
 
         <Stack direction="row" justifyContent="space-between" gap={4}>
-          <Typography component={Link} href="/">
+          <Typography
+            sx={{
+              "&:hover": {
+                color: "#6504B5",
+              },
+            }}
+            component={Link}
+            href="/"
+          >
             Home
           </Typography>
-          <Typography component={Link} href="/about-us">
+          <Typography
+            sx={{
+              "&:hover": {
+                color: "#6504B5",
+              },
+            }}
+            component={Link}
+            href="/about-us"
+          >
             About Us
           </Typography>
           {userInfo && (
-            <Typography component={Link} href="/dashboard/profile">
+            <Typography
+              sx={{
+                "&:hover": {
+                  color: "#6504B5",
+                },
+              }}
+              component={Link}
+              href="/dashboard/profile"
+            >
               Profile
             </Typography>
           )}
           {userInfo && (
             <Link href={`/dashboard/${userInfo?.role}`} passHref>
-              <Typography component="a">Dashboard</Typography>
+              <Typography
+                sx={{
+                  "&:hover": {
+                    color: "#6504B5",
+                  },
+                }}
+                component="a"
+              >
+                Dashboard
+              </Typography>
             </Link>
           )}
         </Stack>
