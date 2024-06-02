@@ -229,7 +229,11 @@ const SearchPets = () => {
                     </Box>
 
                     <Box display="flex" alignItems="center">
-                      {pet.gender === "Male" ? <MaleIcon /> : <FemaleIcon />}
+                      {pet.gender === "Male" ? (
+                        <MaleIcon sx={{ color: "#D5D5D5" }} />
+                      ) : (
+                        <FemaleIcon sx={{ color: "#D5D5D5" }} />
+                      )}
                       <Typography
                         variant="body1"
                         fontWeight="bold"
@@ -242,7 +246,7 @@ const SearchPets = () => {
                       </Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
-                      <StraightenIcon />
+                      <StraightenIcon sx={{ color: "#D5D5D5" }} />
                       <Typography
                         variant="body1"
                         fontWeight="bold"
@@ -255,7 +259,7 @@ const SearchPets = () => {
                       </Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
-                      <CakeIcon />
+                      <CakeIcon sx={{ color: "#D5D5D5" }} />
                       <Typography
                         variant="body1"
                         fontWeight="bold"
@@ -268,7 +272,7 @@ const SearchPets = () => {
                       </Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
-                      <LabelIcon />
+                      <LabelIcon sx={{ color: "#D5D5D5" }} />
                       <Typography
                         variant="body1"
                         fontWeight="bold"
@@ -281,7 +285,7 @@ const SearchPets = () => {
                       </Typography>
                     </Box>
                     <Box display="flex" alignItems="center">
-                      <LocationOnIcon />
+                      <LocationOnIcon sx={{ color: "#D5D5D5" }} />
                       <Typography
                         variant="body1"
                         fontWeight="bold"
