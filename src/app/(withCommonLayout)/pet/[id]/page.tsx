@@ -23,6 +23,7 @@ import CakeIcon from "@mui/icons-material/Cake";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import PsychologyIcon from "@mui/icons-material/Psychology";
+import DescriptionIcon from "@mui/icons-material/Description";
 
 type TParams = {
   params: {
@@ -243,6 +244,7 @@ const PetDetails = ({ params }: TParams) => {
                   my: 1,
                   color: "#6504B5",
                 }}
+                fontWeight="bold"
               >
                 Why should you adopt?
               </Typography>
@@ -280,8 +282,46 @@ const PetDetails = ({ params }: TParams) => {
             my: 2,
           }}
         >
-          <Card>
-            <h1>This</h1>
+          <Card
+            sx={{
+              p: 3,
+            }}
+          >
+            <Box display="flex" alignItems="center">
+              <Typography
+                sx={{
+                  my: 2,
+                  color: "#6504B5",
+                }}
+                fontWeight="bold"
+              >
+                Adoption Requirements and Description?
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <ScheduleIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Adoption Requirement:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {pet?.adoptionRequirements}
+              </Typography>
+            </Box>
+            <Box
+              display="flex"
+              alignItems="center"
+              sx={{
+                my: 1,
+              }}
+            >
+              <DescriptionIcon />
+              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+                Description:
+              </Typography>
+              <Typography variant="body1" marginLeft={1}>
+                {pet?.description}
+              </Typography>
+            </Box>
           </Card>
         </Grid>
       </Grid>
