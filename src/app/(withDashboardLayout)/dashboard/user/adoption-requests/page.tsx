@@ -2,17 +2,7 @@
 
 import { useGetPendingAdoptionRequestsQuery } from "@/redux/api/adoptionRequestApi";
 import { getUserInfo } from "@/services/auth.services";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-} from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 import PetDetailsDialog from "../components/PetDetailsDialog";
