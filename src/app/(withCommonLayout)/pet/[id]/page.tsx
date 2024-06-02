@@ -65,7 +65,7 @@ const PetDetails = ({ params }: TParams) => {
       <Grid container spacing={2}>
         <Grid item md={8}>
           <Grid container spacing={2}>
-            {pet?.photos?.map((pet: any, index: number) => (
+            {Array.from({ length: 6 }, (_, index) => (
               <Grid item key={index} xs={12} md={4}>
                 <Card>
                   <Box
@@ -80,12 +80,21 @@ const PetDetails = ({ params }: TParams) => {
                       },
                     }}
                   >
-                    <Image
-                      src={pet}
-                      alt={`pet-${index}`}
-                      width={500}
-                      height={300}
-                    />
+                    {pet?.photos && pet.photos[index] ? (
+                      <Image
+                        src={pet.photos[index]}
+                        alt={`pet-${index}`}
+                        width={500}
+                        height={300}
+                      />
+                    ) : (
+                      <Image
+                        src="https://i.ibb.co/MVp49Jn/logo.png" // Change this to the path of your default photo
+                        alt={`default-pet-${index}`}
+                        width={500}
+                        height={300}
+                      />
+                    )}
                   </Box>
                 </Card>
               </Grid>
