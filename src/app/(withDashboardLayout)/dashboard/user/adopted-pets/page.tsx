@@ -104,7 +104,7 @@ const AdoptionRequests = () => {
           fontWeight: "bold",
         }}
       >
-        Your adoption request list
+        Your adopted pets list
       </Typography>
       {!isLoading ? (
         <Box my={2}>
