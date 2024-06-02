@@ -24,6 +24,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import DescriptionIcon from "@mui/icons-material/Description";
+import ListIcon from "@mui/icons-material/List";
 
 type TParams = {
   params: {
@@ -89,7 +90,7 @@ const PetDetails = ({ params }: TParams) => {
                       />
                     ) : (
                       <Image
-                        src="https://i.ibb.co/MVp49Jn/logo.png" // Change this to the path of your default photo
+                        src="https://i.ibb.co/4VPcFkd/placeholder.jpg" // Change this to the path of your default photo
                         alt={`default-pet-${index}`}
                         width={500}
                         height={300}
@@ -308,7 +309,7 @@ const PetDetails = ({ params }: TParams) => {
               </Typography>
             </Box>
             <Box display="flex" alignItems="center">
-              <ScheduleIcon />
+              <ListIcon />
               <Typography variant="body1" fontWeight="bold" marginLeft={1}>
                 Adoption Requirement:
               </Typography>
