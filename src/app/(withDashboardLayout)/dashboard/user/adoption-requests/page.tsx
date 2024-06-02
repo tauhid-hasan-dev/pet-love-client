@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetPendingAdoptionRequestsQuery } from "@/redux/api/adoptionRequestApi";
-import { useGetPetQuery } from "@/redux/api/petApi";
+
 import { getUserInfo } from "@/services/auth.services";
 import {
   Box,
@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
+import PetDetailsDialog from "../components/PetDetailsDialog";
 
 type TUserInfo = {
   id: string;
@@ -60,13 +61,14 @@ const AdoptionRequests = () => {
   };
 
   const columns: GridColDef[] = [
-    { field: "userName", headerName: "User Name", flex: 2 },
-    { field: "userEmail", headerName: "User Email", flex: 2 },
-    { field: "status", headerName: "Request Status", flex: 2 },
+    { field: "userName", headerName: "User Name", flex: 1 },
+    { field: "userEmail", headerName: "User Email", flex: 1 },
+
+    { field: "petId", headerName: "Pet ID", flex: 1 },
     {
       field: "action",
-      headerName: "Action",
-      flex: 1,
+      headerName: "See requested pet details",
+      flex: 0.8,
       renderCell: ({ row }) => {
         return (
           <Button
@@ -79,6 +81,7 @@ const AdoptionRequests = () => {
         );
       },
     },
+    { field: "status", headerName: "Request Status", flex: 0.5 },
   ];
 
   return (
@@ -117,49 +120,6 @@ const AdoptionRequests = () => {
         onClose={handleCloseDialog}
       />
     </Box>
-  );
-};
-
-type PetDetailsDialogProps = {
-  petId: string | null;
-  open: boolean;
-  onClose: () => void;
-};
-
-const PetDetailsDialog = ({ petId, open, onClose }: PetDetailsDialogProps) => {
-  const { data: petData, isLoading: isPetLoading } = useGetPetQuery(
-    petId ?? undefined
-  );
-
-  return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>See requested pet details for adoption</DialogTitle>
-      <DialogContent>
-        {isPetLoading ? (
-          <CircularProgress />
-        ) : petData ? (
-          <DialogContentText>
-            <Typography variant="body1">Name: {petData.name}</Typography>
-            <Typography variant="body1">Type: {petData.species}</Typography>
-            <Typography variant="body1">Gender: {petData.gender}</Typography>
-            <Typography variant="body1">Size: {petData.size}</Typography>
-            <Typography variant="body1">Age: {petData.age}</Typography>
-            <Typography variant="body1">Breed: {petData.breed}</Typography>
-            <Typography variant="body1">
-              Location: {petData.location}
-            </Typography>
-            <Typography variant="body1">
-              Description: {petData.description}
-            </Typography>
-          </DialogContentText>
-        ) : (
-          <Typography variant="body1">No pet data available.</Typography>
-        )}
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>Close</Button>
-      </DialogActions>
-    </Dialog>
   );
 };
 
