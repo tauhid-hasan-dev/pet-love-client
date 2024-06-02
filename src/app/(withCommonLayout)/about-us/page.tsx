@@ -47,7 +47,7 @@ const About = () => {
           <Box
             mt={4}
             p={3}
-            sx={{ backgroundColor: "#f5f5f5", borderRadius: "8px" }}
+            sx={{ backgroundColor: "#F1EAFF", borderRadius: "8px" }}
           >
             <Typography variant="h5" gutterBottom>
               OUR MISSION

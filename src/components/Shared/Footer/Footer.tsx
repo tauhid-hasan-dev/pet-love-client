@@ -10,7 +10,7 @@ const Footer = () => {
         <Stack direction="row" gap={4} justifyContent="center">
           <Typography color="#fff">info@petlove.com</Typography>
           <Typography color="#fff">(0202) 456 0982</Typography>
-          <Typography color="#fff">Istanbul, Turkey</Typography>
+          <Typography color="#fff">New York, USA</Typography>
         </Stack>
         <Stack direction="row" gap={2} justifyContent="center" py={3}>
           <Image

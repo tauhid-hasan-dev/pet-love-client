@@ -29,8 +29,9 @@ const HeroSection = () => {
           new start.
         </Typography>
         <Box sx={{ display: "flex", gap: 2 }}>
-          {/* <Button>Find</Button> */}
-          <Button variant="outlined">Contact us</Button>
+          <Button href="/about-us" variant="outlined">
+            Learn More
+          </Button>
         </Box>
       </Box>
 
