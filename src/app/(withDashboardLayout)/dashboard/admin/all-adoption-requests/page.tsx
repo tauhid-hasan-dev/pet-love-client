@@ -57,6 +57,8 @@ const AdoptionRequests = () => {
                 ? "red"
                 : value === "PENDING"
                 ? "#6504B5"
+                : value === "APPROVED"
+                ? "#9BCF53"
                 : "inherit",
           }}
         >
