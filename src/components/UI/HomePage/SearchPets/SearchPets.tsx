@@ -28,6 +28,20 @@ const filters = [
   { label: "Type", options: ["Dog", "Cat"], key: "species" },
 ];
 
+const customTextFieldStyles = {
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#6504B5", // Custom border color
+    },
+    "&:hover fieldset": {
+      borderColor: "#6504B5", // Custom border color on hover
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#6504B5", // Custom border color when focused
+    },
+  },
+};
+
 const SearchPets = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedFilters, setSelectedFilters] = useState<
@@ -76,7 +90,12 @@ const SearchPets = () => {
   return (
     <Box sx={{ my: 10 }}>
       <Box sx={{ textAlign: "center" }}>
-        <Typography variant="h4" component="h1" fontWeight={700}>
+        <Typography
+          sx={{ color: "#6504B5" }}
+          variant="h4"
+          component="h1"
+          fontWeight={700}
+        >
           Pets Available for Adoption
         </Typography>
       </Box>
@@ -87,11 +106,11 @@ const SearchPets = () => {
             <TextField
               onChange={(e) => setSearchTerm(e.target.value)}
               value={searchTerm}
-              /* variant="filled" */
               variant="outlined"
               size="medium"
               placeholder="Search"
               fullWidth
+              sx={customTextFieldStyles}
               InputProps={{
                 endAdornment: searchTerm && (
                   <IconButton onClick={() => setSearchTerm("")}>
@@ -111,6 +130,7 @@ const SearchPets = () => {
                 fullWidth
                 value={selectedFilters[filter.key] || ""}
                 onChange={(e) => handleFilterChange(filter.key, e.target.value)}
+                sx={customTextFieldStyles}
                 InputProps={{
                   endAdornment: selectedFilters[filter.key] && (
                     <IconButton onClick={() => handleClearFilter(filter.key)}>
@@ -152,7 +172,7 @@ const SearchPets = () => {
         ) : pets.length > 0 ? (
           <Grid container spacing={4}>
             {pets.map((pet: any) => (
-              <Grid item key={pet.id} md={4} >
+              <Grid item key={pet.id} md={4}>
                 <Card
                   className={styles.cardContainer}
                   sx={{ borderRadius: 4, p: 2 }}
