@@ -17,7 +17,6 @@ import FemaleIcon from "@mui/icons-material/Female";
 import StraightenIcon from "@mui/icons-material/Straighten";
 import CakeIcon from "@mui/icons-material/Cake";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import DescriptionIcon from "@mui/icons-material/Description";
 
 type PetDetailsDialogProps = {
   petId: string | null;
@@ -101,15 +100,6 @@ const PetDetailsDialog = ({ petId, open, onClose }: PetDetailsDialogProps) => {
               </Typography>
               <Typography variant="body1" marginLeft={1}>
                 {petData.location}
-              </Typography>
-            </Box>
-            <Box display="flex" alignItems="center">
-              <DescriptionIcon />
-              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
-                Description:
-              </Typography>
-              <Typography variant="body1" marginLeft={1}>
-                {petData.description}
               </Typography>
             </Box>
           </DialogContentText>
