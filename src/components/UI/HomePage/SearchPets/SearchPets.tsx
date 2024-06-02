@@ -21,6 +21,12 @@ import { useGetAllPetsQuery } from "@/redux/api/petApi";
 import { useDebounced } from "@/redux/hooks";
 import { useState, useMemo, useEffect } from "react";
 import styles from "./SearchPets.module.css";
+import PetsIcon from "@mui/icons-material/Pets";
+import LabelIcon from "@mui/icons-material/Label";
+import MaleIcon from "@mui/icons-material/Male";
+import FemaleIcon from "@mui/icons-material/Female";
+import StraightenIcon from "@mui/icons-material/Straighten";
+import CakeIcon from "@mui/icons-material/Cake";
 
 const filters = [
   { label: "Size", options: ["Small", "Medium", "Large"], key: "size" },
@@ -198,23 +204,95 @@ const SearchPets = () => {
                     />
                   </Box>
                   <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      sx={{ color: "#6504B5" }}
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="space-between"
                     >
-                      {pet.name}
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {pet.age}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      A {pet.size} size {pet.gender} {pet.species},
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" mt={1}>
-                      <LocationOnIcon /> {pet.location}
-                    </Typography>
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                        sx={{ color: "#6504B5" }}
+                      >
+                        {pet.name}
+                      </Typography>
+
+                      <Typography
+                        gutterBottom
+                        variant="body1"
+                        component="div"
+                        sx={{ color: "#6504B5" }}
+                      >
+                        {pet.species}
+                      </Typography>
+                    </Box>
+
+                    <Box display="flex" alignItems="center">
+                      {pet.gender === "Male" ? <MaleIcon /> : <FemaleIcon />}
+                      <Typography
+                        variant="body1"
+                        fontWeight="bold"
+                        marginLeft={1}
+                      >
+                        Gender:
+                      </Typography>
+                      <Typography variant="body1" marginLeft={1}>
+                        {pet.gender}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" alignItems="center">
+                      <StraightenIcon />
+                      <Typography
+                        variant="body1"
+                        fontWeight="bold"
+                        marginLeft={1}
+                      >
+                        Size:
+                      </Typography>
+                      <Typography variant="body1" marginLeft={1}>
+                        {pet.size}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" alignItems="center">
+                      <CakeIcon />
+                      <Typography
+                        variant="body1"
+                        fontWeight="bold"
+                        marginLeft={1}
+                      >
+                        Age:
+                      </Typography>
+                      <Typography variant="body1" marginLeft={1}>
+                        {pet.age}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" alignItems="center">
+                      <LabelIcon />
+                      <Typography
+                        variant="body1"
+                        fontWeight="bold"
+                        marginLeft={1}
+                      >
+                        Breed:
+                      </Typography>
+                      <Typography variant="body1" marginLeft={1}>
+                        {pet.breed}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" alignItems="center">
+                      <LocationOnIcon />
+                      <Typography
+                        variant="body1"
+                        fontWeight="bold"
+                        marginLeft={1}
+                      >
+                        Location:
+                      </Typography>
+                      <Typography variant="body1" marginLeft={1}>
+                        {pet.location}
+                      </Typography>
+                    </Box>
                   </CardContent>
                   <CardActions
                     sx={{
