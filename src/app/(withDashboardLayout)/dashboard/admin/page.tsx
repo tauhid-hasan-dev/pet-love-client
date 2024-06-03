@@ -1,10 +1,19 @@
+"use client";
+
 import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
 import React from "react";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PetsIcon from "@mui/icons-material/Pets";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import { useGetAllUserQuery } from "@/redux/api/userApi";
+import { useGetAllAdoptionRequestsQuery } from "@/redux/api/adoptionRequestApi";
+import { useGetAllPetsQuery } from "@/redux/api/petApi";
 
 const AdminDashboard = () => {
+  const { data: allUsers } = useGetAllUserQuery({});
+  const { data } = useGetAllPetsQuery({});
+  const { data: requests } = useGetAllAdoptionRequestsQuery({});
+
   return (
     <Stack direction="row" spacing={4}>
       <Card sx={{ minWidth: 400, p: 2, borderRadius: 4 }}>
@@ -23,7 +32,7 @@ const AdminDashboard = () => {
                 color="text.secondary"
                 gutterBottom
               >
-                14
+                {allUsers?.length}
               </Typography>
             </Box>
             <PeopleOutlineIcon
@@ -48,7 +57,7 @@ const AdminDashboard = () => {
                 color="text.secondary"
                 gutterBottom
               >
-                14
+                {data?.pets?.length}
               </Typography>
             </Box>
             <PetsIcon sx={{ fontSize: 45, color: "#F1EAFF" }}></PetsIcon>
@@ -71,7 +80,7 @@ const AdminDashboard = () => {
                 color="text.secondary"
                 gutterBottom
               >
-                14
+                {requests?.length}
               </Typography>
             </Box>
             <MailOutlineIcon
