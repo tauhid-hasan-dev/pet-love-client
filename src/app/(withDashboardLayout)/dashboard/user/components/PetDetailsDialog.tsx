@@ -37,7 +37,12 @@ const PetDetailsDialog = ({ petId, open, onClose }: PetDetailsDialogProps) => {
           <CircularProgress />
         ) : petData ? (
           <DialogContentText
-            sx={{ backgroundColor: "#F1EAFF", p: 1, borderRadius: 2 }}
+            sx={{
+              backgroundColor: "#F1EAFF",
+              p: 1,
+              borderRadius: 2,
+              minWidth: 300,
+            }}
           >
             <Box display="flex" alignItems="center">
               <PetsIcon />
