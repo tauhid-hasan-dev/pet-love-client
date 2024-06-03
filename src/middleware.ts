@@ -6,10 +6,14 @@ import type { NextRequest } from "next/server";
 type Role = keyof typeof roleBasedPrivateRoutes;
 
 const AuthRoutes = ["/login", "/register"];
-const commonPrivateRoutes = ["/dashboard", "/dashboard/change-password"];
+const commonPrivateRoutes = [
+  "/dashboard",
+  "/dashboard/change-password",
+  "/pet/page*",
+];
 const roleBasedPrivateRoutes = {
-  USER: [/^\/dashboard\/user/],
-  ADMIN: [/^\/dashboard\/admin/],
+  user: [/^\/dashboard\/user/],
+  admin: [/^\/dashboard\/admin/],
 };
 
 export function middleware(request: NextRequest) {
@@ -39,17 +43,17 @@ export function middleware(request: NextRequest) {
     decodedData = jwtDecode(accessToken) as any;
   }
 
-  const role = decodedData?.role;
-
-  // if (role === 'ADMIN' && pathname.startsWith('/dashboard/admin')) {
-  //    return NextResponse.next();
-  // }
+  const role = decodedData?.role?.toLowerCase();
 
   if (role && roleBasedPrivateRoutes[role as Role]) {
     const routes = roleBasedPrivateRoutes[role as Role];
     if (routes.some((route) => pathname.match(route))) {
       return NextResponse.next();
     }
+  }
+
+  if (pathname.startsWith("/pet/")) {
+    return NextResponse.next();
   }
 
   return NextResponse.redirect(new URL("/", request.url));
