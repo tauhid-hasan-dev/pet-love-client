@@ -42,6 +42,16 @@ const petApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.adoptionrequest],
     }),
+    updateRequestStatus: build.mutation({
+      query: (data) => {
+        return {
+          url: `/adoption-requests/${data.id}`,
+          method: "PUT",
+          data: data.body,
+        };
+      },
+      invalidatesTags: [tagTypes.adoptionrequest],
+    }),
   }),
 });
 
@@ -50,4 +60,5 @@ export const {
   useGetAllAdoptedPetsQuery,
   useGetAllAdoptionRequestsQuery,
   useGetPendingAdoptionRequestsQuery,
+  useUpdateRequestStatusMutation,
 } = petApi;
