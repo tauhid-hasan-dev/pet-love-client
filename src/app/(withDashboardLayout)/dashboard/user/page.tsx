@@ -31,7 +31,7 @@ const UserDashboard = () => {
 
   const { data: adoptedPets } = useGetAllAdoptedPetsQuery(user?.id);
   const { data } = useGetPendingAdoptionRequestsQuery(user?.id);
-  console.log(data);
+
   return (
     <Stack direction="row" spacing={4}>
       <Card sx={{ minWidth: 400, p: 2, borderRadius: 4 }}>
