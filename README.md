@@ -69,7 +69,6 @@ npm run dev
 - **Pet Cards**: Display a list of pets available for adoption in card format. Each card should include:
     - Pet's name
     - Photo
-    - Brief description
     - Age
     - Breed
     - Location
