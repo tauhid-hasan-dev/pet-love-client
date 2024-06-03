@@ -14,50 +14,130 @@ The Pet Adoption website is a comprehensive platform designed to facilitate the 
 - **Component Library:** Material UI
 - **Authentication:** JWT (JSON Web Tokens)
 
-### **Topics are covered in this Project:**
 
--- **Secure Login System**: Implement password hashing to ensure secure login.
-- **SSR**: (Server side rendering) and **CSR**:(Client Side Rendering)
-- Authentication with json web token
-- CRUD operations(Pet, Adoption request, User)
-- Error Handling using zod error.
-- Routing with express router.
+## Full Feature Implemented in this webiste
 
-### **To run this project locally, follow theese instructions**
+### 1. Home Page/Landing Page
 
-- You should have postgreSQL installed in your computer
-- take a look at the .env.example file to replace your own credintials
-- Import the postman collection to the postman to test the apis
+### Header:
 
-**Clone this repository in your machine**
+- **Logo**: Prominently displayed website logo.
+- **Navigation Bar**: Links to:
+    - Home
+    - About Us
+    - Login/Register (if not logged in)
+    - My Profile (if logged in)
 
-```
-git clone https://github.com/tauhid-hasan-dev/pet-love-backend.git
+### Searching Options:
 
-**Install yarn for node_modules**
+- **Search Bar**: Below the header, allowing users to search for pets by:
+    - Pet type (e.g., dog, cat)
+    - Breed
+    - Age
+    - Location
+- **Sidebar**: Additional filtering options such as:
+    - Size
+    - Gender
+    - Special needs
 
-```
-yarn install
-```
+### Pet Lists (Based on search):
 
-**Run the project**
+- **Pet Cards**: Display a list of pets available for adoption in card format. Each card should include:
+    - Pet's name
+    - Photo
+    - Brief description
+    - Age
+    - Breed
+    - Location
+    - Link to the full pet details page
 
-```
-yarn run dev
-```
+### Extra Sections (Optional):
 
-**The connect the project to the database**
+- **Success Stories**: Testimonials from people who have adopted pets through the website.
+- **Adoption Tips**: Advice and guidelines for adopting a pet.
 
-```
-npx prisma migrate dev
-```
+### Footer:
 
-**To connect to the database**
+- **Contact Information**: Email address, phone number, social media links.
+- **Copyright Information**: Standard copyright details.
+- **Additional Links**: Terms of Use, Privacy Policy, etc.
 
-```
-npx prisma studio
-```
----
+### 2. Login & Registration
+
+### Login Form:
+
+- **Fields**:
+    - Username or email address
+    - Password
+
+### Registration Form:
+
+- **Fields**:
+    - Username
+    - Email address
+    - Password (with confirmation)
+
+### 3. Pet Details Page (Private)
+
+### Features:
+
+- **Pet Information**: Detailed information about the pet, including:
+    - Multiple photos
+    - Detailed description (temperament, special needs, etc.)
+    - Age, breed, gender
+    - Health status (vaccinated, spayed/neutered)
+    - Current location
+- **Adoption Request Button**: Button to initiate an adoption request (redirects to adoption request page).
+- Accessible only to logged-in users.
+
+### 4. Pet Adoption Request Page
+
+### Features:
+
+- **Form Fields**:
+    - User's contact information (prefilled from profile if possible)
+    - Additional information
+    - Agreement to terms and conditions
+- **Submit Button**: Submit the adoption request.
+
+### 5. My Profile
+
+### User Account Information:
+
+- **Edit Profile**: Options to edit username and email.
+- **Change Password**: Link to Change Password section.
+
+### Subsections:
+
+- **5.1 My Adopted Pets**:
+    - List of pets the user has adopted.
+    - Details for each pet
+      
+- **5.2 Change Password Section**:
+    - **Fields**:
+        - Current password
+        - New password (with confirmation)
+
+### 6. Admin Dashboard
+
+### User Management:
+
+- **View and Manage User Accounts**: Activate/deactivate accounts, edit roles and delete users.
+- **Create Admin**: Admin can create another admin.
+
+### Pet Management:
+
+- **Add New Pets**: Only admins can add pets to the system.
+- **Edit/Remove Pets**: Admins can edit or remove pet listings.
+
+### 7. About Us Page
+
+### Content:
+
+- **Mission Statement**: Brief description of the website's purpose and mission.
+- **Team Information**: Information about the team behind the website.
+- **Contact Information**: Email address, phone number, social media links.
+
 
 
 
