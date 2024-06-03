@@ -48,7 +48,7 @@ npm run dev
     - Home
     - About Us
     - Login/Register (if not logged in)
-    - Logout (if not logged in)
+    - Logout (if logged in)
     - My Profile (if logged in)
     - Dashboard (if logged in)
 
