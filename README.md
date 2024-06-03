@@ -14,6 +14,29 @@ The Pet Love website is a comprehensive platform designed to facilitate the adop
 - **Component Library:** Material UI
 - **Authentication:** JWT (JSON Web Tokens)
 
+### **To run this project locally, follow theese instructions**
+
+- You should have nodejs installed in your computer
+
+**Clone this repository in your machine**
+
+```
+git clone https://github.com/tauhid-hasan-dev/pet-love-backend.git
+```
+
+**Install yarn for node_modules**
+
+```
+npm install
+```
+
+**Run the project**
+
+```
+npm run dev
+```
+
+
 ## Full Feature Implemented in this webiste
 
 ### 1. Home Page/Landing Page
