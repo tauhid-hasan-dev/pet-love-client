@@ -24,7 +24,7 @@ The Pet Love website is a comprehensive platform designed to facilitate the adop
 git clone https://github.com/tauhid-hasan-dev/pet-love-backend.git
 ```
 
-**Install yarn for node_modules**
+**Install node package manager(npm) for node_modules**
 
 ```
 npm install
