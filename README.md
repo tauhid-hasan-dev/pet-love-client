@@ -14,7 +14,6 @@ The Pet Love website is a comprehensive platform designed to facilitate the adop
 - **Component Library:** Material UI
 - **Authentication:** JWT (JSON Web Tokens)
 
-
 ## Full Feature Implemented in this webiste
 
 ### 1. Home Page/Landing Page
@@ -26,7 +25,9 @@ The Pet Love website is a comprehensive platform designed to facilitate the adop
     - Home
     - About Us
     - Login/Register (if not logged in)
+    - Logout (if not logged in)
     - My Profile (if logged in)
+    - Dashboard (if logged in)
 
 ### Searching Options:
 
