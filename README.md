@@ -1,15 +1,11 @@
 # Pet Love Client - For a pet adoption platform by Tauhid Hasan
 
 The Pet Adoption website is a comprehensive platform designed to facilitate the adoption of pets by connecting potential adopters with available animals. The website includes features for browsing and searching for pets, detailed pet profiles, user account management, and administrative tools for managing pet listings and user accounts. The goal is to create an efficient, user-friendly, and secure system that promotes responsible pet adoption and helps pets find loving homes.
+
 ### **Project Live link:** https://pet-love-eight.vercel.app/
 ### **Live Server link:** https://pet-adoption-plaform-a8.vercel.app
 ### **Frontend Repo:** https://github.com/tauhid-hasan-dev/pet-love-client.git
 ### **Backend Repo:** https://github.com/tauhid-hasan-dev/pet-love-backend.git
-
-
-
-   
-
 
 ### **Technology Stack:**
 
@@ -20,8 +16,8 @@ The Pet Adoption website is a comprehensive platform designed to facilitate the 
 
 ### **Topics are covered in this Project:**
 
-- SSR(Server side rendering) and CSR(Client Side Rendering)
-- -
+-- **Secure Login System**: Implement password hashing to ensure secure login.
+- **SSR**: (Server side rendering) and **CSR**:(Client Side Rendering)
 - Authentication with json web token
 - CRUD operations(Pet, Adoption request, User)
 - Error Handling using zod error.
@@ -61,3 +57,12 @@ npx prisma migrate dev
 ```
 npx prisma studio
 ```
+---
+
+
+
+
+
+
+
+
