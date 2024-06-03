@@ -12,7 +12,9 @@ The Pet Love website is a comprehensive platform designed to facilitate the adop
 
 - **Programming Language:** TypeScript
 - **Web Framework:** Next.js
-- **Local State Mangement:** Next.js
+- **Local State Mangement:** Redux Js
+- **Data fetching and caching :** RTK query
+- **HTTP requests interceptor:** Axios
 - **Component Library:** Material UI
 - **Authentication:** JWT (JSON Web Tokens)
 
