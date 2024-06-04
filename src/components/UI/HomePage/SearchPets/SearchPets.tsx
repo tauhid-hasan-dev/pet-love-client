@@ -91,7 +91,6 @@ const SearchPets = () => {
 
   const { data, isLoading, isError } = useGetAllPetsQuery(query);
   const pets = data?.pets || [];
-  console.log(pets);
 
   return (
     <Box sx={{ my: 10 }}>

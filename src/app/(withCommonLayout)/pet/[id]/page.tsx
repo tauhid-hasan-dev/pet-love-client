@@ -310,9 +310,9 @@ const PetDetails = ({ params }: TParams) => {
             </Box>
             <Box display="flex" alignItems="center">
               <ListIcon />
-              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+              {/* <Typography variant="body1" fontWeight="bold" marginLeft={1}>
                 Adoption Requirement:
-              </Typography>
+              </Typography> */}
               <Typography variant="body1" marginLeft={1}>
                 {pet?.adoptionRequirements}
               </Typography>
@@ -325,9 +325,9 @@ const PetDetails = ({ params }: TParams) => {
               }}
             >
               <DescriptionIcon />
-              <Typography variant="body1" fontWeight="bold" marginLeft={1}>
+              {/* <Typography variant="body1" fontWeight="bold" marginLeft={1}>
                 Description:
-              </Typography>
+              </Typography> */}
               <Typography variant="body1" marginLeft={1}>
                 {pet?.description}
               </Typography>
