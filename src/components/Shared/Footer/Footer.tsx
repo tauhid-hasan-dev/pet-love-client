@@ -32,7 +32,7 @@ const Footer = () => {
             alt="twitter"
           />
           <Image
-            src={assets.images.facebook}
+            src={assets.images.linkedin}
             width={30}
             height={30}
             alt="linkedin"

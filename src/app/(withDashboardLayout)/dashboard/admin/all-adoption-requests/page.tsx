@@ -1,11 +1,15 @@
 "use client";
 
-import { useGetAllAdoptionRequestsQuery } from "@/redux/api/adoptionRequestApi";
+import {
+  useGetAllAdoptionRequestsQuery,
+  useUpdateRequestStatusMutation,
+} from "@/redux/api/adoptionRequestApi";
 
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import React, { useState } from "react";
 import PetDetailsDialog from "../../user/components/PetDetailsDialog";
+import { toast } from "sonner";
 
 const AdoptionRequests = () => {
   const [open, setOpen] = useState(false);
@@ -24,9 +28,53 @@ const AdoptionRequests = () => {
     setSelectedPetId(null);
   };
 
+  const [updateRequestStatus] = useUpdateRequestStatusMutation();
+
+  const handleApprove = async (id: string) => {
+    try {
+      const res = await updateRequestStatus({
+        id: id,
+        body: { status: "APPROVED" },
+      });
+      if (res?.data?.id) {
+        toast.success("Request Approved :)");
+      }
+    } catch (error) {
+      console.error("Error updating user status:", error);
+    }
+  };
+
+  const handleReject = async (id: string) => {
+    try {
+      const res = await updateRequestStatus({
+        id: id,
+        body: { status: "REJECTED" },
+      });
+      if (res?.data?.id) {
+        toast.success("Request Rejected :(");
+      }
+    } catch (error) {
+      console.error("Error updating user status:", error);
+    }
+  };
+
+  const handlePending = async (id: string) => {
+    try {
+      const res = await updateRequestStatus({
+        id: id,
+        body: { status: "PENDING" },
+      });
+      if (res?.data?.id) {
+        toast.success("Request Pending!!");
+      }
+    } catch (error) {
+      console.error("Error updating user status:", error);
+    }
+  };
+
   const columns: GridColDef[] = [
-    { field: "userName", headerName: "User Name", flex: 1 },
-    { field: "userEmail", headerName: "User Email", flex: 1 },
+    { field: "userName", headerName: "User Name", flex: 0.5 },
+    { field: "userEmail", headerName: "User Email", flex: 0.5 },
     { field: "petId", headerName: "Pet ID", flex: 1 },
     {
       field: "action",
@@ -65,6 +113,51 @@ const AdoptionRequests = () => {
           {value}
         </Typography>
       ),
+    },
+    {
+      field: "Action",
+      headerName: "Update Status",
+      flex: 1,
+      renderCell: ({ row }) => {
+        return (
+          <>
+            <>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => handleApprove(row.id)}
+                style={{
+                  marginRight: "10px",
+                  borderColor: "green",
+                  color: "green",
+                }}
+              >
+                APPROVE
+              </Button>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => handleReject(row.id)}
+                style={{
+                  marginRight: "10px",
+                  borderColor: "red",
+                  color: "red",
+                }}
+              >
+                REJECT
+              </Button>
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => handlePending(row.id)}
+                style={{ borderColor: "purple", color: "purple" }}
+              >
+                PENDING
+              </Button>
+            </>
+          </>
+        );
+      },
     },
   ];
 
