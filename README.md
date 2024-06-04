@@ -8,6 +8,34 @@ The Pet Love website is a comprehensive platform designed to facilitate the adop
 #### **Frontend Repo:** https://github.com/tauhid-hasan-dev/pet-love-client.git
 #### **Backend Repo:** https://github.com/tauhid-hasan-dev/pet-love-backend.git
 
+#### **Youtube Presentation:** https://youtu.be/coFm3dZChxE
+
+---
+
+**Admin Credential**
+```
+email: admin@petlove.com
+password: 123456
+```
+
+**User Credentials**
+```
+email: user@petlove.com
+password: 123456
+```
+```
+email: user-one@petlove.com
+password: 123456
+```
+```
+email: user-two@petlove.com
+password: 123456
+```
+```
+email: user-three@petlove.com
+password: 123456
+```
+
 ### **Technology Stack:**
 
 - **Programming Language:** TypeScript
