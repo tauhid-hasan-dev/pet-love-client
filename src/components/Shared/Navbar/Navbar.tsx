@@ -35,51 +35,34 @@ const Navbar = () => {
   );
 
   return (
-    <Container sx={{ width: "100%" }}>
-      <Stack
-        py={2}
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Typography variant="h4" component={Link} href="/" fontWeight={600}>
-          <Stack direction="row" gap={1}>
-            <Box component="span" color="primary.main">
-              Pet
-            </Box>
-            <Box>
-              <Image src={assets.svgs.logo} width={40} height={40} alt="logo" />
-            </Box>
-            <Box component="span" color="primary.main">
-              Love
-            </Box>
-          </Stack>
-        </Typography>
+    <Box sx={{ borderBottom: "1px solid lightgray", width: "100%" }}>
+      <Container sx={{ width: "100%" }}>
+        <Stack
+          py={2}
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Typography variant="h4" component={Link} href="/" fontWeight={600}>
+            <Stack direction="row" gap={1}>
+              <Box component="span" color="primary.main">
+                Pet
+              </Box>
+              <Box>
+                <Image
+                  src={assets.svgs.logo}
+                  width={40}
+                  height={40}
+                  alt="logo"
+                />
+              </Box>
+              <Box component="span" color="primary.main">
+                Love
+              </Box>
+            </Stack>
+          </Typography>
 
-        <Stack direction="row" justifyContent="space-between" gap={4}>
-          <Typography
-            sx={{
-              "&:hover": {
-                color: "#6504B5",
-              },
-            }}
-            component={Link}
-            href="/"
-          >
-            Home
-          </Typography>
-          <Typography
-            sx={{
-              "&:hover": {
-                color: "#6504B5",
-              },
-            }}
-            component={Link}
-            href="/about-us"
-          >
-            About Us
-          </Typography>
-          {userInfo && (
+          <Stack direction="row" justifyContent="space-between" gap={4}>
             <Typography
               sx={{
                 "&:hover": {
@@ -87,30 +70,54 @@ const Navbar = () => {
                 },
               }}
               component={Link}
-              href="/dashboard/profile"
+              href="/"
             >
-              Profile
+              Home
             </Typography>
-          )}
-          {userInfo && (
-            <Link href={`/dashboard/${userInfo?.role}`} passHref>
+            <Typography
+              sx={{
+                "&:hover": {
+                  color: "#6504B5",
+                },
+              }}
+              component={Link}
+              href="/about-us"
+            >
+              About Us
+            </Typography>
+            {userInfo && (
               <Typography
                 sx={{
                   "&:hover": {
                     color: "#6504B5",
                   },
                 }}
-                component="a"
+                component={Link}
+                href="/dashboard/profile"
               >
-                Dashboard
+                Profile
               </Typography>
-            </Link>
-          )}
-        </Stack>
+            )}
+            {userInfo && (
+              <Link href={`/dashboard/${userInfo?.role}`} passHref>
+                <Typography
+                  sx={{
+                    "&:hover": {
+                      color: "#6504B5",
+                    },
+                  }}
+                  component="a"
+                >
+                  Dashboard
+                </Typography>
+              </Link>
+            )}
+          </Stack>
 
-        <AuthButton />
-      </Stack>
-    </Container>
+          <AuthButton />
+        </Stack>
+      </Container>
+    </Box>
   );
 };
 

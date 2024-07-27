@@ -177,7 +177,7 @@ const SearchPets = () => {
         ) : pets.length > 0 ? (
           <Grid container spacing={4}>
             {pets.map((pet: any) => (
-              <Grid item key={pet.id} md={4}>
+              <Grid item key={pet.id} xs={12} sm={6} md={4} lg={4}>
                 <Card
                   className={styles.cardContainer}
                   sx={{ borderRadius: 4, p: 2 }}
