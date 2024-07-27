@@ -1,23 +1,42 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+"use client";
+
+import {
+  Box,
+  Button,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Image from "next/image";
 import assets from "@/assets";
 
 const HeroSection = () => {
+  const theme = useTheme();
+  const isMobileOrTablet = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Container
       sx={{
         display: "flex",
+        flexDirection: isMobileOrTablet ? "column-reverse" : "row",
         alignItems: "center",
         justifyContent: "space-between",
+        textAlign: isMobileOrTablet ? "center" : "left",
+        gap: 5,
       }}
     >
-      <Box sx={{ flex: 1 }}>
-        <Typography variant="h3" component="h3" fontWeight={600}>
+      <Box sx={{ flex: 1, mb: isMobileOrTablet ? 2 : 0 }}>
+        <Typography
+          variant={isMobileOrTablet ? "h4" : "h3"}
+          component="h3"
+          fontWeight={600}
+        >
           Find your best friend
         </Typography>
 
         <Typography
-          variant="h2"
+          variant={isMobileOrTablet ? "h3" : "h2"}
           component="h1"
           fontWeight={600}
           color="primary.main"
@@ -28,7 +47,13 @@ const HeroSection = () => {
           Could you give a pet a forever home? Browse our pooches looking for a
           new start.
         </Typography>
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            justifyContent: isMobileOrTablet ? "center" : "flex-start",
+          }}
+        >
           <Button href="/about-us" variant="outlined">
             Learn More
           </Button>
@@ -40,11 +65,16 @@ const HeroSection = () => {
           p: 1,
           flex: 1,
           display: "flex",
-          justifyContent: "right",
+          justifyContent: isMobileOrTablet ? "center" : "right",
         }}
       >
         <Box>
-          <Image src={assets.images.cat} width={450} height={400} alt="cat" />
+          <Image
+            src={assets.images.cat}
+            width={isMobileOrTablet ? 300 : 450}
+            height={isMobileOrTablet ? 267 : 400}
+            alt="cat"
+          />
         </Box>
       </Box>
     </Container>
