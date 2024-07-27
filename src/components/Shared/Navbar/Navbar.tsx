@@ -33,7 +33,6 @@ const Navbar = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width:600px)");
-  console.log(userInfo);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -54,32 +53,31 @@ const Navbar = () => {
 
   const drawerContent = (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 300, padding: 5 }}
       role="presentation"
       onClick={handleDrawerToggle}
       onKeyDown={handleDrawerToggle}
     >
       <List>
-        <ListItem button component={Link} href="/">
+        <ListItem component={Link} href="/">
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} href="/about-us">
+        <ListItem component={Link} href="/about-us">
           <ListItemText primary="About Us" />
         </ListItem>
         {userInfo && (
-          <ListItem button component={Link} href="/dashboard/profile">
+          <ListItem component={Link} href="/dashboard/profile">
             <ListItemText primary="Profile" />
           </ListItem>
         )}
         {userInfo && (
-          <ListItem
-            button
-            component={Link}
-            href={`/dashboard/${userInfo.role}`}
-          >
+          <ListItem component={Link} href={`/dashboard/${userInfo.role}`}>
             <ListItemText primary="Dashboard" />
           </ListItem>
         )}
+        <ListItem>
+          <AuthButton />
+        </ListItem>
       </List>
     </Box>
   );
@@ -131,7 +129,12 @@ const Navbar = () => {
               </Drawer>
             </>
           ) : (
-            <Stack direction="row" justifyContent="space-between" gap={4}>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              gap={4}
+            >
               <Typography
                 sx={{
                   "&:hover": {
@@ -181,10 +184,9 @@ const Navbar = () => {
                   </Typography>
                 </Link>
               )}
+              <AuthButton />
             </Stack>
           )}
-
-          <AuthButton />
         </Stack>
       </Container>
     </Box>
