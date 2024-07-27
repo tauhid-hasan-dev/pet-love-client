@@ -3,10 +3,22 @@
 import assets from "@/assets";
 import { getUserInfo } from "@/services/auth.services";
 import { useEffect, useState } from "react";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Stack,
+  Typography,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import MenuIcon from "@mui/icons-material/Menu";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 interface UserInfo {
   id: string;
@@ -19,6 +31,8 @@ interface UserInfo {
 
 const Navbar = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width:600px)");
   console.log(userInfo);
 
   useEffect(() => {
@@ -32,6 +46,42 @@ const Navbar = () => {
   const AuthButton = dynamic(
     () => import("@/components/UI/AuthButton/AuthButton"),
     { ssr: false }
+  );
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
+  const drawerContent = (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={handleDrawerToggle}
+      onKeyDown={handleDrawerToggle}
+    >
+      <List>
+        <ListItem button component={Link} href="/">
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button component={Link} href="/about-us">
+          <ListItemText primary="About Us" />
+        </ListItem>
+        {userInfo && (
+          <ListItem button component={Link} href="/dashboard/profile">
+            <ListItemText primary="Profile" />
+          </ListItem>
+        )}
+        {userInfo && (
+          <ListItem
+            button
+            component={Link}
+            href={`/dashboard/${userInfo.role}`}
+          >
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+        )}
+      </List>
+    </Box>
   );
 
   return (
@@ -62,30 +112,26 @@ const Navbar = () => {
             </Stack>
           </Typography>
 
-          <Stack direction="row" justifyContent="space-between" gap={4}>
-            <Typography
-              sx={{
-                "&:hover": {
-                  color: "#6504B5",
-                },
-              }}
-              component={Link}
-              href="/"
-            >
-              Home
-            </Typography>
-            <Typography
-              sx={{
-                "&:hover": {
-                  color: "#6504B5",
-                },
-              }}
-              component={Link}
-              href="/about-us"
-            >
-              About Us
-            </Typography>
-            {userInfo && (
+          {isMobile ? (
+            <>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={handleDrawerToggle}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Drawer
+                anchor="right"
+                open={drawerOpen}
+                onClose={handleDrawerToggle}
+              >
+                {drawerContent}
+              </Drawer>
+            </>
+          ) : (
+            <Stack direction="row" justifyContent="space-between" gap={4}>
               <Typography
                 sx={{
                   "&:hover": {
@@ -93,26 +139,50 @@ const Navbar = () => {
                   },
                 }}
                 component={Link}
-                href="/dashboard/profile"
+                href="/"
               >
-                Profile
+                Home
               </Typography>
-            )}
-            {userInfo && (
-              <Link href={`/dashboard/${userInfo?.role}`} passHref>
+              <Typography
+                sx={{
+                  "&:hover": {
+                    color: "#6504B5",
+                  },
+                }}
+                component={Link}
+                href="/about-us"
+              >
+                About Us
+              </Typography>
+              {userInfo && (
                 <Typography
                   sx={{
                     "&:hover": {
                       color: "#6504B5",
                     },
                   }}
-                  component="a"
+                  component={Link}
+                  href="/dashboard/profile"
                 >
-                  Dashboard
+                  Profile
                 </Typography>
-              </Link>
-            )}
-          </Stack>
+              )}
+              {userInfo && (
+                <Link href={`/dashboard/${userInfo.role}`} passHref>
+                  <Typography
+                    sx={{
+                      "&:hover": {
+                        color: "#6504B5",
+                      },
+                    }}
+                    component="a"
+                  >
+                    Dashboard
+                  </Typography>
+                </Link>
+              )}
+            </Stack>
+          )}
 
           <AuthButton />
         </Stack>
