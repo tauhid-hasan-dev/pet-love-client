@@ -149,6 +149,34 @@ const LoginPage = () => {
                 </Link>
               </Typography>
             </TSNForm>
+            <Box
+              sx={{
+                py: 3,
+                border: "1px solid #ccc",
+                borderRadius: 1,
+                mt: 3,
+              }}
+            >
+              <Typography variant="h6" fontWeight={600}>
+                Admin Credential
+              </Typography>
+              <Typography>
+                <strong>Email:</strong> admin@petlove.com
+              </Typography>
+              <Typography>
+                <strong>Password:</strong> 123456
+              </Typography>
+
+              <Typography variant="h6" fontWeight={600} mt={2}>
+                User Credential
+              </Typography>
+              <Typography>
+                <strong>Email:</strong> user@petlove.com
+              </Typography>
+              <Typography>
+                <strong>Password:</strong> 123456
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Stack>
