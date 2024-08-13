@@ -19,7 +19,6 @@ const Footer = () => {
       sx={{
         backgroundColor: "#6B088D", // Primary background color
         color: "#FFFFFF", // Text color
-        py: 6,
         mt: 4,
       }}
     >

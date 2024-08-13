@@ -1,3 +1,4 @@
+import AdoptionSection from "@/components/UI/HomePage/AdoptionSection/AdoptionSection";
 import HeroSection from "@/components/UI/HomePage/HeroSection/HeroSection";
 import SearchPets from "@/components/UI/HomePage/SearchPets/SearchPets";
 
@@ -8,6 +9,7 @@ const HomePage = () => {
     <div>
       <HeroSection />
       <SearchPets />
+      <AdoptionSection />
     </div>
   );
 };
