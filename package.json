@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "@mui/material-nextjs": "^5.15.11",
+    "@mui/x-charts": "^7.12.1",
     "@mui/x-data-grid": "^6.20.0",
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
@@ -39,5 +40,5 @@
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   },
-  "proxy": "https://api.imgbb.com"  
+  "proxy": "https://api.imgbb.com"
 }
