@@ -94,16 +94,25 @@ const SearchPets = () => {
 
   return (
     <Box sx={{ my: 10 }}>
-      <Box sx={{ textAlign: "center" }}>
-        <Typography
-          sx={{ color: "#6504B5" }}
-          variant="h4"
-          component="h1"
-          fontWeight={700}
+      <Container>
+        <Box
+          sx={{
+            textAlign: "center",
+            backgroundColor: "#874CCC", // Set your desired background color here
+            padding: 7, // Optional padding
+            borderRadius: 2, // Optional border radius for rounded corners
+          }}
         >
-          Pets Available for Adoption
-        </Typography>
-      </Box>
+          <Typography
+            sx={{ color: "#ffffff" }}
+            variant="h4"
+            component="h1"
+            fontWeight={700}
+          >
+            Pets Available for Adoption
+          </Typography>
+        </Box>
+      </Container>
 
       <Container>
         <Grid container spacing={2} alignItems="center" py={3}>
