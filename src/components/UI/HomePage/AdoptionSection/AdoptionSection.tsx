@@ -4,7 +4,7 @@ import { Home, Pets, QuestionAnswer } from "@mui/icons-material";
 
 const AdoptionSection = () => {
   return (
-    <Box sx={{ backgroundColor: "#f3e5f5", padding: "4rem 0" }}>
+    <Box sx={{ backgroundColor: "#f9f6ff", padding: "4rem 0" }}>
       <Container sx={{ textAlign: "center", padding: "0 2rem" }}>
         {" "}
         {/* Added padding */}
